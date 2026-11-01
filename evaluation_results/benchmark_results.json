@@ -1,0 +1,1784 @@
+{
+  "timestamp": "2026-10-31T10:47:16.494703+00:00",
+  "system": "AIDERS v0.1.0",
+  "institution": "MIT ADT University (MITSoE/MITSoC), Pune",
+  "models_evaluated": [
+    {
+      "model_name": "CLIP ViT-B/32 (openai/clip-vit-base-patch32)",
+      "task": "Zero-Shot Disaster Image Classification",
+      "method": "Zero-shot with domain-specific text prompts",
+      "num_classes": 8,
+      "classes": [
+        "FLOOD",
+        "LANDSLIDE",
+        "EARTHQUAKE",
+        "WILDFIRE",
+        "CYCLONE",
+        "THUNDERSTORM",
+        "DROUGHT",
+        "NO_DISASTER"
+      ],
+      "candidate_labels_count": 11,
+      "test_set_size": 48,
+      "samples_per_class": 6,
+      "model_load_time_s": 66.25,
+      "avg_inference_time_s": 0.47,
+      "metrics": {
+        "accuracy": 0.8542,
+        "total_samples": 48,
+        "correct": 41,
+        "macro_precision": 0.8557,
+        "macro_recall": 0.8542,
+        "macro_f1": 0.8454,
+        "weighted_precision": 0.8557,
+        "weighted_recall": 0.8542,
+        "weighted_f1": 0.8454,
+        "per_class": {
+          "FLOOD": {
+            "precision": 0.4286,
+            "recall": 0.5,
+            "f1": 0.4615,
+            "support": 6,
+            "tp": 3,
+            "fp": 4,
+            "fn": 3
+          },
+          "LANDSLIDE": {
+            "precision": 0.6667,
+            "recall": 0.3333,
+            "f1": 0.4444,
+            "support": 6,
+            "tp": 2,
+            "fp": 1,
+            "fn": 4
+          },
+          "EARTHQUAKE": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 6,
+            "tp": 6,
+            "fp": 0,
+            "fn": 0
+          },
+          "WILDFIRE": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 6,
+            "tp": 6,
+            "fp": 0,
+            "fn": 0
+          },
+          "CYCLONE": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 6,
+            "tp": 6,
+            "fp": 0,
+            "fn": 0
+          },
+          "THUNDERSTORM": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 6,
+            "tp": 6,
+            "fp": 0,
+            "fn": 0
+          },
+          "DROUGHT": {
+            "precision": 0.75,
+            "recall": 1.0,
+            "f1": 0.8571,
+            "support": 6,
+            "tp": 6,
+            "fp": 2,
+            "fn": 0
+          },
+          "NO_DISASTER": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 6,
+            "tp": 6,
+            "fp": 0,
+            "fn": 0
+          }
+        },
+        "confusion_matrix": {
+          "FLOOD": {
+            "FLOOD": 3,
+            "LANDSLIDE": 1,
+            "EARTHQUAKE": 0,
+            "WILDFIRE": 0,
+            "CYCLONE": 0,
+            "THUNDERSTORM": 0,
+            "DROUGHT": 2,
+            "NO_DISASTER": 0
+          },
+          "LANDSLIDE": {
+            "FLOOD": 4,
+            "LANDSLIDE": 2,
+            "EARTHQUAKE": 0,
+            "WILDFIRE": 0,
+            "CYCLONE": 0,
+            "THUNDERSTORM": 0,
+            "DROUGHT": 0,
+            "NO_DISASTER": 0
+          },
+          "EARTHQUAKE": {
+            "FLOOD": 0,
+            "LANDSLIDE": 0,
+            "EARTHQUAKE": 6,
+            "WILDFIRE": 0,
+            "CYCLONE": 0,
+            "THUNDERSTORM": 0,
+            "DROUGHT": 0,
+            "NO_DISASTER": 0
+          },
+          "WILDFIRE": {
+            "FLOOD": 0,
+            "LANDSLIDE": 0,
+            "EARTHQUAKE": 0,
+            "WILDFIRE": 6,
+            "CYCLONE": 0,
+            "THUNDERSTORM": 0,
+            "DROUGHT": 0,
+            "NO_DISASTER": 0
+          },
+          "CYCLONE": {
+            "FLOOD": 0,
+            "LANDSLIDE": 0,
+            "EARTHQUAKE": 0,
+            "WILDFIRE": 0,
+            "CYCLONE": 6,
+            "THUNDERSTORM": 0,
+            "DROUGHT": 0,
+            "NO_DISASTER": 0
+          },
+          "THUNDERSTORM": {
+            "FLOOD": 0,
+            "LANDSLIDE": 0,
+            "EARTHQUAKE": 0,
+            "WILDFIRE": 0,
+            "CYCLONE": 0,
+            "THUNDERSTORM": 6,
+            "DROUGHT": 0,
+            "NO_DISASTER": 0
+          },
+          "DROUGHT": {
+            "FLOOD": 0,
+            "LANDSLIDE": 0,
+            "EARTHQUAKE": 0,
+            "WILDFIRE": 0,
+            "CYCLONE": 0,
+            "THUNDERSTORM": 0,
+            "DROUGHT": 6,
+            "NO_DISASTER": 0
+          },
+          "NO_DISASTER": {
+            "FLOOD": 0,
+            "LANDSLIDE": 0,
+            "EARTHQUAKE": 0,
+            "WILDFIRE": 0,
+            "CYCLONE": 0,
+            "THUNDERSTORM": 0,
+            "DROUGHT": 0,
+            "NO_DISASTER": 6
+          }
+        }
+      },
+      "detailed_predictions": [
+        {
+          "index": 0,
+          "description": "Synthetic flood scene (variant 0)",
+          "true_label": "FLOOD",
+          "predicted_label": "FLOOD",
+          "confidence": 0.3781,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "FLOOD",
+              "score": 0.3781
+            },
+            {
+              "category": "FLOOD",
+              "score": 0.2254
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.104
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0879
+            },
+            {
+              "category": "DROUGHT",
+              "score": 0.0736
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "description": "Synthetic flood scene (variant 1)",
+          "true_label": "FLOOD",
+          "predicted_label": "FLOOD",
+          "confidence": 0.3311,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "FLOOD",
+              "score": 0.3311
+            },
+            {
+              "category": "FLOOD",
+              "score": 0.2447
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.1358
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0998
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.0626
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "description": "Synthetic flood scene (variant 2)",
+          "true_label": "FLOOD",
+          "predicted_label": "LANDSLIDE",
+          "confidence": 0.2033,
+          "correct": false,
+          "top_5_predictions": [
+            {
+              "category": "LANDSLIDE",
+              "score": 0.2033
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.1798
+            },
+            {
+              "category": "FLOOD",
+              "score": 0.1683
+            },
+            {
+              "category": "NO_DISASTER",
+              "score": 0.1216
+            },
+            {
+              "category": "FLOOD",
+              "score": 0.1165
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "description": "Synthetic flood scene (variant 3)",
+          "true_label": "FLOOD",
+          "predicted_label": "FLOOD",
+          "confidence": 0.2427,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "FLOOD",
+              "score": 0.2427
+            },
+            {
+              "category": "DROUGHT",
+              "score": 0.177
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.152
+            },
+            {
+              "category": "FLOOD",
+              "score": 0.1444
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.127
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "description": "Synthetic flood scene (variant 4)",
+          "true_label": "FLOOD",
+          "predicted_label": "DROUGHT",
+          "confidence": 0.3421,
+          "correct": false,
+          "top_5_predictions": [
+            {
+              "category": "DROUGHT",
+              "score": 0.3421
+            },
+            {
+              "category": "FLOOD",
+              "score": 0.2088
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.1562
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0904
+            },
+            {
+              "category": "FLOOD",
+              "score": 0.074
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "description": "Synthetic flood scene (variant 5)",
+          "true_label": "FLOOD",
+          "predicted_label": "DROUGHT",
+          "confidence": 0.3316,
+          "correct": false,
+          "top_5_predictions": [
+            {
+              "category": "DROUGHT",
+              "score": 0.3316
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.2123
+            },
+            {
+              "category": "FLOOD",
+              "score": 0.1637
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.1024
+            },
+            {
+              "category": "FLOOD",
+              "score": 0.0657
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "description": "Synthetic landslide scene (variant 0)",
+          "true_label": "LANDSLIDE",
+          "predicted_label": "FLOOD",
+          "confidence": 0.381,
+          "correct": false,
+          "top_5_predictions": [
+            {
+              "category": "FLOOD",
+              "score": 0.381
+            },
+            {
+              "category": "FLOOD",
+              "score": 0.2381
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.1519
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.1114
+            },
+            {
+              "category": "DROUGHT",
+              "score": 0.0656
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "description": "Synthetic landslide scene (variant 1)",
+          "true_label": "LANDSLIDE",
+          "predicted_label": "FLOOD",
+          "confidence": 0.3985,
+          "correct": false,
+          "top_5_predictions": [
+            {
+              "category": "FLOOD",
+              "score": 0.3985
+            },
+            {
+              "category": "FLOOD",
+              "score": 0.2761
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.1349
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.0845
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0605
+            }
+          ]
+        },
+        {
+          "index": 8,
+          "description": "Synthetic landslide scene (variant 2)",
+          "true_label": "LANDSLIDE",
+          "predicted_label": "FLOOD",
+          "confidence": 0.2755,
+          "correct": false,
+          "top_5_predictions": [
+            {
+              "category": "FLOOD",
+              "score": 0.2755
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.2064
+            },
+            {
+              "category": "FLOOD",
+              "score": 0.1998
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.1957
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.0594
+            }
+          ]
+        },
+        {
+          "index": 9,
+          "description": "Synthetic landslide scene (variant 3)",
+          "true_label": "LANDSLIDE",
+          "predicted_label": "LANDSLIDE",
+          "confidence": 0.3106,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "LANDSLIDE",
+              "score": 0.3106
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.2301
+            },
+            {
+              "category": "FLOOD",
+              "score": 0.1862
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.1151
+            },
+            {
+              "category": "FLOOD",
+              "score": 0.1086
+            }
+          ]
+        },
+        {
+          "index": 10,
+          "description": "Synthetic landslide scene (variant 4)",
+          "true_label": "LANDSLIDE",
+          "predicted_label": "FLOOD",
+          "confidence": 0.2345,
+          "correct": false,
+          "top_5_predictions": [
+            {
+              "category": "FLOOD",
+              "score": 0.2345
+            },
+            {
+              "category": "FLOOD",
+              "score": 0.2137
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.1709
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.168
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.1554
+            }
+          ]
+        },
+        {
+          "index": 11,
+          "description": "Synthetic landslide scene (variant 5)",
+          "true_label": "LANDSLIDE",
+          "predicted_label": "LANDSLIDE",
+          "confidence": 0.3557,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "LANDSLIDE",
+              "score": 0.3557
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.2503
+            },
+            {
+              "category": "FLOOD",
+              "score": 0.1452
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.1234
+            },
+            {
+              "category": "FLOOD",
+              "score": 0.0942
+            }
+          ]
+        },
+        {
+          "index": 12,
+          "description": "Synthetic earthquake scene (variant 0)",
+          "true_label": "EARTHQUAKE",
+          "predicted_label": "EARTHQUAKE",
+          "confidence": 0.5914,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.5914
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.1891
+            },
+            {
+              "category": "FLOOD",
+              "score": 0.1033
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0451
+            },
+            {
+              "category": "DROUGHT",
+              "score": 0.0308
+            }
+          ]
+        },
+        {
+          "index": 13,
+          "description": "Synthetic earthquake scene (variant 1)",
+          "true_label": "EARTHQUAKE",
+          "predicted_label": "EARTHQUAKE",
+          "confidence": 0.6958,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.6958
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.1858
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0403
+            },
+            {
+              "category": "FLOOD",
+              "score": 0.0329
+            },
+            {
+              "category": "DROUGHT",
+              "score": 0.0221
+            }
+          ]
+        },
+        {
+          "index": 14,
+          "description": "Synthetic earthquake scene (variant 2)",
+          "true_label": "EARTHQUAKE",
+          "predicted_label": "EARTHQUAKE",
+          "confidence": 0.8102,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.8102
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.1144
+            },
+            {
+              "category": "DROUGHT",
+              "score": 0.0208
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0186
+            },
+            {
+              "category": "FLOOD",
+              "score": 0.0174
+            }
+          ]
+        },
+        {
+          "index": 15,
+          "description": "Synthetic earthquake scene (variant 3)",
+          "true_label": "EARTHQUAKE",
+          "predicted_label": "EARTHQUAKE",
+          "confidence": 0.5904,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.5904
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.3006
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.038
+            },
+            {
+              "category": "DROUGHT",
+              "score": 0.0261
+            },
+            {
+              "category": "FLOOD",
+              "score": 0.0223
+            }
+          ]
+        },
+        {
+          "index": 16,
+          "description": "Synthetic earthquake scene (variant 4)",
+          "true_label": "EARTHQUAKE",
+          "predicted_label": "EARTHQUAKE",
+          "confidence": 0.7654,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.7654
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.1586
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0306
+            },
+            {
+              "category": "DROUGHT",
+              "score": 0.0145
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.0116
+            }
+          ]
+        },
+        {
+          "index": 17,
+          "description": "Synthetic earthquake scene (variant 5)",
+          "true_label": "EARTHQUAKE",
+          "predicted_label": "EARTHQUAKE",
+          "confidence": 0.7887,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.7887
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.1311
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.0254
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0174
+            },
+            {
+              "category": "DROUGHT",
+              "score": 0.0169
+            }
+          ]
+        },
+        {
+          "index": 18,
+          "description": "Synthetic wildfire scene (variant 0)",
+          "true_label": "WILDFIRE",
+          "predicted_label": "WILDFIRE",
+          "confidence": 0.9976,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "WILDFIRE",
+              "score": 0.9976
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0012
+            },
+            {
+              "category": "DROUGHT",
+              "score": 0.0004
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0003
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.0002
+            }
+          ]
+        },
+        {
+          "index": 19,
+          "description": "Synthetic wildfire scene (variant 1)",
+          "true_label": "WILDFIRE",
+          "predicted_label": "WILDFIRE",
+          "confidence": 0.9986,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "WILDFIRE",
+              "score": 0.9986
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0004
+            },
+            {
+              "category": "DROUGHT",
+              "score": 0.0004
+            },
+            {
+              "category": "THUNDERSTORM",
+              "score": 0.0002
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0001
+            }
+          ]
+        },
+        {
+          "index": 20,
+          "description": "Synthetic wildfire scene (variant 2)",
+          "true_label": "WILDFIRE",
+          "predicted_label": "WILDFIRE",
+          "confidence": 0.9977,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "WILDFIRE",
+              "score": 0.9977
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0014
+            },
+            {
+              "category": "DROUGHT",
+              "score": 0.0004
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0002
+            },
+            {
+              "category": "THUNDERSTORM",
+              "score": 0.0001
+            }
+          ]
+        },
+        {
+          "index": 21,
+          "description": "Synthetic wildfire scene (variant 3)",
+          "true_label": "WILDFIRE",
+          "predicted_label": "WILDFIRE",
+          "confidence": 0.9984,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "WILDFIRE",
+              "score": 0.9984
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.001
+            },
+            {
+              "category": "DROUGHT",
+              "score": 0.0002
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0001
+            },
+            {
+              "category": "THUNDERSTORM",
+              "score": 0.0001
+            }
+          ]
+        },
+        {
+          "index": 22,
+          "description": "Synthetic wildfire scene (variant 4)",
+          "true_label": "WILDFIRE",
+          "predicted_label": "WILDFIRE",
+          "confidence": 0.9991,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "WILDFIRE",
+              "score": 0.9991
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0003
+            },
+            {
+              "category": "DROUGHT",
+              "score": 0.0003
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0001
+            },
+            {
+              "category": "THUNDERSTORM",
+              "score": 0.0001
+            }
+          ]
+        },
+        {
+          "index": 23,
+          "description": "Synthetic wildfire scene (variant 5)",
+          "true_label": "WILDFIRE",
+          "predicted_label": "WILDFIRE",
+          "confidence": 0.9976,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "WILDFIRE",
+              "score": 0.9976
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0012
+            },
+            {
+              "category": "DROUGHT",
+              "score": 0.0007
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.0002
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0002
+            }
+          ]
+        },
+        {
+          "index": 24,
+          "description": "Synthetic cyclone scene (variant 0)",
+          "true_label": "CYCLONE",
+          "predicted_label": "CYCLONE",
+          "confidence": 0.4828,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "CYCLONE",
+              "score": 0.4828
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.2362
+            },
+            {
+              "category": "DROUGHT",
+              "score": 0.0897
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0729
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.0664
+            }
+          ]
+        },
+        {
+          "index": 25,
+          "description": "Synthetic cyclone scene (variant 1)",
+          "true_label": "CYCLONE",
+          "predicted_label": "CYCLONE",
+          "confidence": 0.4457,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "CYCLONE",
+              "score": 0.4457
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.2712
+            },
+            {
+              "category": "DROUGHT",
+              "score": 0.1155
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0641
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.054
+            }
+          ]
+        },
+        {
+          "index": 26,
+          "description": "Synthetic cyclone scene (variant 2)",
+          "true_label": "CYCLONE",
+          "predicted_label": "CYCLONE",
+          "confidence": 0.6028,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "CYCLONE",
+              "score": 0.6028
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.1629
+            },
+            {
+              "category": "DROUGHT",
+              "score": 0.0999
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0575
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.0417
+            }
+          ]
+        },
+        {
+          "index": 27,
+          "description": "Synthetic cyclone scene (variant 3)",
+          "true_label": "CYCLONE",
+          "predicted_label": "CYCLONE",
+          "confidence": 0.3812,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "CYCLONE",
+              "score": 0.3812
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.2731
+            },
+            {
+              "category": "DROUGHT",
+              "score": 0.1196
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.0926
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0913
+            }
+          ]
+        },
+        {
+          "index": 28,
+          "description": "Synthetic cyclone scene (variant 4)",
+          "true_label": "CYCLONE",
+          "predicted_label": "CYCLONE",
+          "confidence": 0.4413,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "CYCLONE",
+              "score": 0.4413
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.2141
+            },
+            {
+              "category": "DROUGHT",
+              "score": 0.1319
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.1022
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.0641
+            }
+          ]
+        },
+        {
+          "index": 29,
+          "description": "Synthetic cyclone scene (variant 5)",
+          "true_label": "CYCLONE",
+          "predicted_label": "CYCLONE",
+          "confidence": 0.4653,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "CYCLONE",
+              "score": 0.4653
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.2275
+            },
+            {
+              "category": "DROUGHT",
+              "score": 0.0987
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0843
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.0615
+            }
+          ]
+        },
+        {
+          "index": 30,
+          "description": "Synthetic thunderstorm scene (variant 0)",
+          "true_label": "THUNDERSTORM",
+          "predicted_label": "THUNDERSTORM",
+          "confidence": 0.9878,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "THUNDERSTORM",
+              "score": 0.9878
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.0059
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.003
+            },
+            {
+              "category": "CYCLONE",
+              "score": 0.0013
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.0006
+            }
+          ]
+        },
+        {
+          "index": 31,
+          "description": "Synthetic thunderstorm scene (variant 1)",
+          "true_label": "THUNDERSTORM",
+          "predicted_label": "THUNDERSTORM",
+          "confidence": 0.9952,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "THUNDERSTORM",
+              "score": 0.9952
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.0018
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0014
+            },
+            {
+              "category": "CYCLONE",
+              "score": 0.0007
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.0003
+            }
+          ]
+        },
+        {
+          "index": 32,
+          "description": "Synthetic thunderstorm scene (variant 2)",
+          "true_label": "THUNDERSTORM",
+          "predicted_label": "THUNDERSTORM",
+          "confidence": 0.9909,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "THUNDERSTORM",
+              "score": 0.9909
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0037
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.0028
+            },
+            {
+              "category": "FLOOD",
+              "score": 0.0007
+            },
+            {
+              "category": "CYCLONE",
+              "score": 0.0007
+            }
+          ]
+        },
+        {
+          "index": 33,
+          "description": "Synthetic thunderstorm scene (variant 3)",
+          "true_label": "THUNDERSTORM",
+          "predicted_label": "THUNDERSTORM",
+          "confidence": 0.9815,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "THUNDERSTORM",
+              "score": 0.9815
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0057
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.0056
+            },
+            {
+              "category": "CYCLONE",
+              "score": 0.0032
+            },
+            {
+              "category": "FLOOD",
+              "score": 0.0011
+            }
+          ]
+        },
+        {
+          "index": 34,
+          "description": "Synthetic thunderstorm scene (variant 4)",
+          "true_label": "THUNDERSTORM",
+          "predicted_label": "THUNDERSTORM",
+          "confidence": 0.967,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "THUNDERSTORM",
+              "score": 0.967
+            },
+            {
+              "category": "CYCLONE",
+              "score": 0.0121
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0062
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.0038
+            },
+            {
+              "category": "FLOOD",
+              "score": 0.003
+            }
+          ]
+        },
+        {
+          "index": 35,
+          "description": "Synthetic thunderstorm scene (variant 5)",
+          "true_label": "THUNDERSTORM",
+          "predicted_label": "THUNDERSTORM",
+          "confidence": 0.9335,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "THUNDERSTORM",
+              "score": 0.9335
+            },
+            {
+              "category": "CYCLONE",
+              "score": 0.021
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0185
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.0105
+            },
+            {
+              "category": "FLOOD",
+              "score": 0.0063
+            }
+          ]
+        },
+        {
+          "index": 36,
+          "description": "Synthetic drought scene (variant 0)",
+          "true_label": "DROUGHT",
+          "predicted_label": "DROUGHT",
+          "confidence": 0.9614,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "DROUGHT",
+              "score": 0.9614
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.0251
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0114
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0011
+            },
+            {
+              "category": "FLOOD",
+              "score": 0.0004
+            }
+          ]
+        },
+        {
+          "index": 37,
+          "description": "Synthetic drought scene (variant 1)",
+          "true_label": "DROUGHT",
+          "predicted_label": "DROUGHT",
+          "confidence": 0.9578,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "DROUGHT",
+              "score": 0.9578
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.024
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0164
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0013
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.0001
+            }
+          ]
+        },
+        {
+          "index": 38,
+          "description": "Synthetic drought scene (variant 2)",
+          "true_label": "DROUGHT",
+          "predicted_label": "DROUGHT",
+          "confidence": 0.9112,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "DROUGHT",
+              "score": 0.9112
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.0712
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.014
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0022
+            },
+            {
+              "category": "FLOOD",
+              "score": 0.0005
+            }
+          ]
+        },
+        {
+          "index": 39,
+          "description": "Synthetic drought scene (variant 3)",
+          "true_label": "DROUGHT",
+          "predicted_label": "DROUGHT",
+          "confidence": 0.9619,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "DROUGHT",
+              "score": 0.9619
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.0306
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0053
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0009
+            },
+            {
+              "category": "FLOOD",
+              "score": 0.0005
+            }
+          ]
+        },
+        {
+          "index": 40,
+          "description": "Synthetic drought scene (variant 4)",
+          "true_label": "DROUGHT",
+          "predicted_label": "DROUGHT",
+          "confidence": 0.9696,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "DROUGHT",
+              "score": 0.9696
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.0251
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0029
+            },
+            {
+              "category": "FLOOD",
+              "score": 0.0009
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0007
+            }
+          ]
+        },
+        {
+          "index": 41,
+          "description": "Synthetic drought scene (variant 5)",
+          "true_label": "DROUGHT",
+          "predicted_label": "DROUGHT",
+          "confidence": 0.9765,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "DROUGHT",
+              "score": 0.9765
+            },
+            {
+              "category": "EARTHQUAKE",
+              "score": 0.0178
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0035
+            },
+            {
+              "category": "FLOOD",
+              "score": 0.0008
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0007
+            }
+          ]
+        },
+        {
+          "index": 42,
+          "description": "Synthetic no_disaster scene (variant 0)",
+          "true_label": "NO_DISASTER",
+          "predicted_label": "NO_DISASTER",
+          "confidence": 0.7156,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "NO_DISASTER",
+              "score": 0.7156
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.1528
+            },
+            {
+              "category": "DROUGHT",
+              "score": 0.0676
+            },
+            {
+              "category": "WILDFIRE",
+              "score": 0.0604
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.003
+            }
+          ]
+        },
+        {
+          "index": 43,
+          "description": "Synthetic no_disaster scene (variant 1)",
+          "true_label": "NO_DISASTER",
+          "predicted_label": "NO_DISASTER",
+          "confidence": 0.7211,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "NO_DISASTER",
+              "score": 0.7211
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.1546
+            },
+            {
+              "category": "DROUGHT",
+              "score": 0.0739
+            },
+            {
+              "category": "WILDFIRE",
+              "score": 0.047
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0028
+            }
+          ]
+        },
+        {
+          "index": 44,
+          "description": "Synthetic no_disaster scene (variant 2)",
+          "true_label": "NO_DISASTER",
+          "predicted_label": "NO_DISASTER",
+          "confidence": 0.7502,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "NO_DISASTER",
+              "score": 0.7502
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.1491
+            },
+            {
+              "category": "DROUGHT",
+              "score": 0.0569
+            },
+            {
+              "category": "WILDFIRE",
+              "score": 0.0406
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0028
+            }
+          ]
+        },
+        {
+          "index": 45,
+          "description": "Synthetic no_disaster scene (variant 3)",
+          "true_label": "NO_DISASTER",
+          "predicted_label": "NO_DISASTER",
+          "confidence": 0.6826,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "NO_DISASTER",
+              "score": 0.6826
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.1806
+            },
+            {
+              "category": "DROUGHT",
+              "score": 0.0707
+            },
+            {
+              "category": "WILDFIRE",
+              "score": 0.0625
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.003
+            }
+          ]
+        },
+        {
+          "index": 46,
+          "description": "Synthetic no_disaster scene (variant 4)",
+          "true_label": "NO_DISASTER",
+          "predicted_label": "NO_DISASTER",
+          "confidence": 0.7091,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "NO_DISASTER",
+              "score": 0.7091
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.1804
+            },
+            {
+              "category": "DROUGHT",
+              "score": 0.0575
+            },
+            {
+              "category": "WILDFIRE",
+              "score": 0.049
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0033
+            }
+          ]
+        },
+        {
+          "index": 47,
+          "description": "Synthetic no_disaster scene (variant 5)",
+          "true_label": "NO_DISASTER",
+          "predicted_label": "NO_DISASTER",
+          "confidence": 0.7353,
+          "correct": true,
+          "top_5_predictions": [
+            {
+              "category": "NO_DISASTER",
+              "score": 0.7353
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.1626
+            },
+            {
+              "category": "DROUGHT",
+              "score": 0.0588
+            },
+            {
+              "category": "WILDFIRE",
+              "score": 0.0398
+            },
+            {
+              "category": "LANDSLIDE",
+              "score": 0.0029
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "model_name": "AIDERS Keyword-Based NLP Severity Classifier",
+      "task": "Text \u2192 Severity Level + Alert Type Classification",
+      "method": "Domain-expert keyword matching with priority rules",
+      "metrics": {
+        "severity_accuracy": 1.0,
+        "type_accuracy": 0.8667,
+        "total_test_cases": 15
+      },
+      "detailed_results": [
+        {
+          "text": "Severe Cyclonic Storm approaching coast with GALE force winds 120 kmph",
+          "expected_severity": "Extreme",
+          "predicted_severity": "Extreme",
+          "severity_correct": true,
+          "expected_type": "Cyclone Warning",
+          "predicted_type": "Cyclone Warning",
+          "type_correct": true
+        },
+        {
+          "text": "RED ALERT: Extremely heavy rainfall 250mm causing LANDSLIDE",
+          "expected_severity": "Extreme",
+          "predicted_severity": "Extreme",
+          "severity_correct": true,
+          "expected_type": "Landslide Warning",
+          "predicted_type": "Landslide Warning",
+          "type_correct": true
+        },
+        {
+          "text": "River water DANGER LEVEL exceeded by 2 meters, EMERGENCY evacuation",
+          "expected_severity": "Extreme",
+          "predicted_severity": "Extreme",
+          "severity_correct": true,
+          "expected_type": "Flood Advisory",
+          "predicted_type": "Flood Advisory",
+          "type_correct": true
+        },
+        {
+          "text": "Very heavy rainfall RED ALERT Uttarakhand high risk areas",
+          "expected_severity": "Extreme",
+          "predicted_severity": "Extreme",
+          "severity_correct": true,
+          "expected_type": "Heavy Rainfall Warning",
+          "predicted_type": "Heavy Rainfall Warning",
+          "type_correct": true
+        },
+        {
+          "text": "ORANGE alert: THUNDERSTORM with lightning and gusty winds 50kmph",
+          "expected_severity": "Severe",
+          "predicted_severity": "Severe",
+          "severity_correct": true,
+          "expected_type": "Thunderstorm & Lightning",
+          "predicted_type": "Thunderstorm & Lightning",
+          "type_correct": true
+        },
+        {
+          "text": "FLOOD WARNING for low-lying areas, heavy rain expected",
+          "expected_severity": "Severe",
+          "predicted_severity": "Severe",
+          "severity_correct": true,
+          "expected_type": "Flood Advisory",
+          "predicted_type": "Flood Advisory",
+          "type_correct": true
+        },
+        {
+          "text": "LIGHTNING strike advisory for coastal villages",
+          "expected_severity": "Severe",
+          "predicted_severity": "Severe",
+          "severity_correct": true,
+          "expected_type": "Thunderstorm & Lightning",
+          "predicted_type": "Thunderstorm & Lightning",
+          "type_correct": true
+        },
+        {
+          "text": "Flash flood warning due to HEAVY RAIN in catchment area",
+          "expected_severity": "Severe",
+          "predicted_severity": "Severe",
+          "severity_correct": true,
+          "expected_type": "Heavy Rainfall Warning",
+          "predicted_type": "Flood Advisory",
+          "type_correct": false
+        },
+        {
+          "text": "SQUALLY weather with strong surface winds along coast",
+          "expected_severity": "Severe",
+          "predicted_severity": "Severe",
+          "severity_correct": true,
+          "expected_type": "Wind & Coastal Alert",
+          "predicted_type": "Wind & Coastal Alert",
+          "type_correct": true
+        },
+        {
+          "text": "High discharge INUNDATION advisory for river basin villages",
+          "expected_severity": "Severe",
+          "predicted_severity": "Severe",
+          "severity_correct": true,
+          "expected_type": "Flood Advisory",
+          "predicted_type": "Flood Advisory",
+          "type_correct": true
+        },
+        {
+          "text": "Light to moderate rainfall expected over next 24 hours",
+          "expected_severity": "Moderate",
+          "predicted_severity": "Moderate",
+          "severity_correct": true,
+          "expected_type": "Heavy Rainfall Warning",
+          "predicted_type": "Heavy Rainfall Warning",
+          "type_correct": true
+        },
+        {
+          "text": "Normal weather conditions prevailing over region",
+          "expected_severity": "Moderate",
+          "predicted_severity": "Moderate",
+          "severity_correct": true,
+          "expected_type": "Weather Advisory",
+          "predicted_type": "Weather Advisory",
+          "type_correct": true
+        },
+        {
+          "text": "Partly cloudy sky with possibility of drizzle",
+          "expected_severity": "Moderate",
+          "predicted_severity": "Moderate",
+          "severity_correct": true,
+          "expected_type": "Weather Advisory",
+          "predicted_type": "Weather Advisory",
+          "type_correct": true
+        },
+        {
+          "text": "Light winds 10-15 kmph along coastal belt",
+          "expected_severity": "Moderate",
+          "predicted_severity": "Moderate",
+          "severity_correct": true,
+          "expected_type": "Weather Advisory",
+          "predicted_type": "Wind & Coastal Alert",
+          "type_correct": false
+        },
+        {
+          "text": "EARTHQUAKE tremor magnitude 4.6 felt across district",
+          "expected_severity": "Moderate",
+          "predicted_severity": "Moderate",
+          "severity_correct": true,
+          "expected_type": "Seismic Alert",
+          "predicted_type": "Seismic Alert",
+          "type_correct": true
+        }
+      ]
+    }
+  ]
+}
