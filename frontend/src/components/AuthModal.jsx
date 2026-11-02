@@ -305,10 +305,10 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = "s
   };
 
   return (
-    <div className="fixed inset-0 z-[150] flex items-center justify-center bg-slate-950/85 p-4 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-lg rounded-2xl border border-slate-700 bg-slate-900 shadow-2xl overflow-hidden text-slate-200">
+    <div className="fixed inset-0 z-[150] flex items-center justify-center bg-slate-950/85 p-3 sm:p-4 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200">
+      <div className="relative w-full max-w-lg my-auto max-h-[92vh] flex flex-col rounded-2xl border border-slate-700 bg-slate-900 shadow-2xl overflow-hidden text-slate-200">
         {/* Top Government Emblem Strip */}
-        <div className="border-b border-slate-800 bg-slate-950 px-6 py-3 flex items-center justify-between">
+        <div className="border-b border-slate-800 bg-slate-950 px-4 sm:px-6 py-3 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-2.5">
             <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-indigo-600/20 text-indigo-400 border border-indigo-500/30 font-bold text-xs">
               MHA
@@ -341,7 +341,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = "s
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 space-y-4">
+        <div className="p-4 sm:p-6 space-y-4 overflow-y-auto flex-1 custom-scrollbar">
           {/* Status notices */}
           {authError && (
             <div className="rounded-xl border border-rose-500/30 bg-rose-500/10 p-3 text-xs text-rose-300 flex items-start gap-2">

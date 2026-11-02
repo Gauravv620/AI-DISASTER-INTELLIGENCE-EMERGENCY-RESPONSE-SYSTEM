@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { soundAlerts } from "../services/soundAlerts";
 
-const API_BASE = "http://127.0.0.1:8000";
+const API_BASE = import.meta.env.VITE_API_BASE || "http://127.0.0.1:8000";
 
 const CATEGORY_LABELS = {
   POSSIBLE_LANDSLIDE: "Landslide / Rockfall / Slope Failure",

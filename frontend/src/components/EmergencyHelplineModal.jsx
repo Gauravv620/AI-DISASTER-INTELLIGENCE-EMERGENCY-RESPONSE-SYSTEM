@@ -111,10 +111,10 @@ export default function EmergencyHelplineModal({ isOpen, onClose }) {
   ];
 
   return (
-    <div className="fixed inset-0 z-[120] flex items-center justify-center bg-slate-950/80 p-4 backdrop-blur-md overflow-y-auto">
-      <div className="relative w-full max-w-3xl rounded-2xl border border-slate-700 bg-slate-900 shadow-2xl overflow-hidden my-6">
+    <div className="fixed inset-0 z-[120] flex items-center justify-center bg-slate-950/80 p-3 sm:p-4 backdrop-blur-md overflow-y-auto">
+      <div className="relative w-full max-w-3xl rounded-2xl border border-slate-700 bg-slate-900 shadow-2xl overflow-hidden my-auto max-h-[92vh] flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-slate-800 bg-slate-950 px-6 py-4">
+        <div className="flex items-center justify-between border-b border-slate-800 bg-slate-950 px-4 sm:px-6 py-3 sm:py-4 shrink-0">
           <div className="flex items-center gap-3">
             <div className="rounded-lg bg-rose-500/20 p-2 text-rose-400 border border-rose-500/30">
               <PhoneCall className="h-5 w-5" />

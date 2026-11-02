@@ -4498,7 +4498,7 @@ setCwcFloodTotal(
           onMouseDown={(e) => e.stopPropagation()}
           onClick={(e) => e.stopPropagation()}
           onWheel={(e) => e.stopPropagation()}
-          className="pointer-events-auto absolute top-14 right-3 z-[1100] flex w-[360px] sm:w-[400px] max-w-[calc(100%-1.5rem)] max-h-[calc(100%-4.5rem)] flex-col rounded-2xl border border-slate-200 bg-white/95 text-slate-800 shadow-2xl backdrop-blur-md"
+          className="pointer-events-auto absolute top-14 right-2 sm:right-3 z-[1100] flex w-[320px] sm:w-[390px] max-w-[calc(100vw-1.5rem)] max-h-[calc(100%-4.5rem)] flex-col rounded-2xl border border-slate-200 bg-white/95 text-slate-800 shadow-2xl backdrop-blur-md"
         >
           {/* Header with Two Tabs and Close Button */}
           <div className="flex shrink-0 items-center justify-between border-b border-slate-200/80 px-4 py-3 bg-slate-50/80 rounded-t-2xl">
@@ -4907,7 +4907,7 @@ setCwcFloodTotal(
           onMouseDown={(e) => e.stopPropagation()}
           onClick={(e) => e.stopPropagation()}
           onWheel={(e) => e.stopPropagation()}
-          className="pointer-events-auto absolute left-3 top-1/2 -translate-y-1/2 z-[1100] flex w-[380px] sm:w-[420px] max-w-[calc(100%-1.5rem)] max-h-[min(560px,calc(100%-2rem))] flex-col rounded-2xl border border-slate-700 bg-slate-950/95 text-white shadow-2xl backdrop-blur-md"
+          className="pointer-events-auto absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 z-[1100] flex w-[320px] sm:w-[400px] max-w-[calc(100vw-1.5rem)] max-h-[min(560px,calc(100%-2rem))] flex-col rounded-2xl border border-slate-700 bg-slate-950/95 text-white shadow-2xl backdrop-blur-md"
         >
           {/* Fixed Header */}
           <div className="flex shrink-0 items-center justify-between border-b border-slate-800 px-4 py-3 bg-slate-900/80 rounded-t-2xl">

@@ -23,6 +23,8 @@ import {
   ShieldCheck,
   Star,
   User,
+  Menu,
+  X,
 } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
 
@@ -36,6 +38,7 @@ export default function LandingPage({
   onOpenAuth,
 }) {
   const { user, isAuthenticated } = useAuth();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-[#050b16] text-slate-100 font-sans relative overflow-x-hidden selection:bg-indigo-500/40">
@@ -120,11 +123,11 @@ export default function LandingPage({
             </a>
           </nav>
 
-          {/* Action CTAs */}
-          <div className="flex items-center gap-3">
+          {/* Action CTAs & Mobile Menu Toggle */}
+          <div className="flex items-center gap-2 sm:gap-3">
             <button
               type="button"
-              onClick={onEnterCommand}
+              onClick={onOpenCitizenPortal}
               className="hidden sm:flex items-center gap-2 rounded-xl border border-rose-500/40 bg-rose-500/10 px-3.5 py-2 text-xs font-bold text-rose-300 hover:bg-rose-500/20 transition-all shadow-sm"
             >
               <Radio className="h-3.5 w-3.5 text-rose-400 animate-pulse" />
@@ -136,10 +139,11 @@ export default function LandingPage({
                 <button
                   type="button"
                   onClick={onEnterCommand}
-                  className="flex items-center gap-2 rounded-xl bg-indigo-600 px-4 py-2 text-xs font-bold text-white hover:bg-indigo-500 transition-all shadow-md shadow-indigo-600/30"
+                  className="flex items-center gap-2 rounded-xl bg-indigo-600 px-3 sm:px-4 py-2 text-xs font-bold text-white hover:bg-indigo-500 transition-all shadow-md shadow-indigo-600/30"
                 >
                   <ShieldAlert className="h-4 w-4" />
-                  Enter Command Portal
+                  <span className="hidden sm:inline">Enter Command Portal</span>
+                  <span className="sm:hidden">Command</span>
                 </button>
                 <button
                   type="button"
@@ -158,14 +162,90 @@ export default function LandingPage({
               <button
                 type="button"
                 onClick={onOpenAuth}
-                className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 px-4 py-2 text-xs font-bold text-white hover:brightness-110 transition-all shadow-lg shadow-indigo-600/30"
+                className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 px-3 sm:px-4 py-2 text-xs font-bold text-white hover:brightness-110 transition-all shadow-lg shadow-indigo-600/30"
               >
                 <Lock className="h-3.5 w-3.5" />
-                Sign In / Official Access
+                <span className="hidden sm:inline">Sign In / Official Access</span>
+                <span className="sm:hidden">Sign In</span>
               </button>
             )}
+
+            {/* Mobile Navigation Toggle Button */}
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden rounded-xl border border-slate-800 bg-slate-900/90 p-2 text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+              aria-label="Toggle navigation menu"
+            >
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Navigation Drawer */}
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-slate-800/80 bg-[#060c18] px-4 py-4 space-y-3 shadow-2xl animate-in slide-in-from-top-3 duration-200">
+            <nav className="space-y-1">
+              <a
+                href="#features"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-xs font-bold text-slate-300 hover:bg-slate-900 hover:text-indigo-400"
+              >
+                <ShieldAlert className="h-4 w-4 text-indigo-400" />
+                Core Capabilities
+              </a>
+              <a
+                href="#ai-vision"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-xs font-bold text-slate-300 hover:bg-slate-900 hover:text-indigo-400"
+              >
+                <BrainCircuit className="h-4 w-4 text-purple-400" />
+                Vision AI Model Lab
+              </a>
+              <a
+                href="#architecture"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-xs font-bold text-slate-300 hover:bg-slate-900 hover:text-indigo-400"
+              >
+                <Globe2 className="h-4 w-4 text-blue-400" />
+                National Architecture
+              </a>
+              <a
+                href="#team"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-xs font-bold text-slate-300 hover:bg-slate-900 hover:text-indigo-400"
+              >
+                <Users className="h-4 w-4 text-emerald-400" />
+                Core Engineering Team
+              </a>
+            </nav>
+
+            <div className="pt-2 border-t border-slate-800/80 grid grid-cols-2 gap-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenCitizenPortal();
+                }}
+                className="flex items-center justify-center gap-1.5 rounded-lg bg-rose-600/20 border border-rose-500/40 py-2.5 text-xs font-bold text-rose-300"
+              >
+                <Radio className="h-3.5 w-3.5 text-rose-400 animate-pulse" />
+                Citizen SOS
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenHelplines();
+                }}
+                className="flex items-center justify-center gap-1.5 rounded-lg bg-slate-800 border border-slate-700 py-2.5 text-xs font-bold text-slate-200"
+              >
+                <PhoneCall className="h-3.5 w-3.5 text-amber-400" />
+                Hotlines (112)
+              </button>
+            </div>
+          </div>
+        )}
       </header>
 
       {/* =======================================================
@@ -193,11 +273,11 @@ export default function LandingPage({
           </p>
 
           {/* Primary Action Buttons */}
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+          <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 max-w-xl sm:max-w-none mx-auto">
             <button
               type="button"
               onClick={onEnterCommand}
-              className="flex items-center gap-2.5 rounded-xl bg-gradient-to-r from-indigo-600 via-blue-600 to-indigo-700 px-6 py-3.5 text-sm font-black uppercase tracking-wider text-white shadow-xl shadow-indigo-600/30 hover:scale-105 active:scale-95 transition-all"
+              className="w-full sm:w-auto flex items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-indigo-600 via-blue-600 to-indigo-700 px-6 py-3.5 text-xs sm:text-sm font-black uppercase tracking-wider text-white shadow-xl shadow-indigo-600/30 hover:scale-[1.02] active:scale-95 transition-all"
             >
               <ShieldAlert className="h-5 w-5" />
               <span>Launch Command Center</span>
@@ -206,8 +286,8 @@ export default function LandingPage({
 
             <button
               type="button"
-              onClick={onEnterCommand}
-              className="flex items-center gap-2.5 rounded-xl border border-rose-500/50 bg-rose-500/15 px-6 py-3.5 text-sm font-black uppercase tracking-wider text-rose-300 shadow-xl shadow-rose-600/20 hover:bg-rose-500/25 active:scale-95 transition-all"
+              onClick={onOpenCitizenPortal}
+              className="w-full sm:w-auto flex items-center justify-center gap-2.5 rounded-xl border border-rose-500/50 bg-rose-500/15 px-6 py-3.5 text-xs sm:text-sm font-black uppercase tracking-wider text-rose-300 shadow-xl shadow-rose-600/20 hover:bg-rose-500/25 active:scale-95 transition-all"
             >
               <Radio className="h-5 w-5 text-rose-400 animate-pulse" />
               <span>Citizen Emergency SOS Portal</span>
@@ -215,8 +295,8 @@ export default function LandingPage({
 
             <button
               type="button"
-              onClick={onEnterCommand}
-              className="flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-900/80 px-5 py-3.5 text-sm font-bold text-slate-200 hover:bg-slate-800 hover:border-slate-600 transition-all"
+              onClick={onOpenAIVision}
+              className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-xl border border-slate-700 bg-slate-900/80 px-5 py-3.5 text-xs sm:text-sm font-bold text-slate-200 hover:bg-slate-800 hover:border-slate-600 transition-all"
             >
               <BrainCircuit className="h-5 w-5 text-purple-400" />
               <span>AI Damage Classifier Lab</span>
@@ -224,24 +304,24 @@ export default function LandingPage({
           </div>
 
           {/* Key Verified Metrics Strip */}
-          <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-4 max-w-4xl mx-auto">
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/50 p-5 backdrop-blur">
-              <p className="text-3xl font-black text-emerald-400">85.4%</p>
+          <div className="mt-10 sm:mt-14 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4 max-w-4xl mx-auto">
+            <div className="rounded-2xl border border-slate-800 bg-slate-900/50 p-3.5 sm:p-5 backdrop-blur">
+              <p className="text-2xl sm:text-3xl font-black text-emerald-400">85.4%</p>
               <p className="text-xs font-bold text-white mt-1">CLIP Vision Accuracy</p>
               <p className="text-[10px] text-slate-400 mt-0.5">ViT-B/32 Zero-Shot Benchmark</p>
             </div>
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/50 p-5 backdrop-blur">
-              <p className="text-3xl font-black text-indigo-400">100%</p>
+            <div className="rounded-2xl border border-slate-800 bg-slate-900/50 p-3.5 sm:p-5 backdrop-blur">
+              <p className="text-2xl sm:text-3xl font-black text-indigo-400">100%</p>
               <p className="text-xs font-bold text-white mt-1">NLP Alert Classification</p>
               <p className="text-[10px] text-slate-400 mt-0.5">SACHET & IMD Severity</p>
             </div>
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/50 p-5 backdrop-blur">
-              <p className="text-3xl font-black text-rose-400">&lt; 3.2s</p>
+            <div className="rounded-2xl border border-slate-800 bg-slate-900/50 p-3.5 sm:p-5 backdrop-blur">
+              <p className="text-2xl sm:text-3xl font-black text-rose-400">&lt; 3.2s</p>
               <p className="text-xs font-bold text-white mt-1">AI Triage to Dispatch</p>
               <p className="text-[10px] text-slate-400 mt-0.5">Cost-Weighted Haversine ETA</p>
             </div>
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/50 p-5 backdrop-blur">
-              <p className="text-3xl font-black text-sky-400">6 NDRF</p>
+            <div className="rounded-2xl border border-slate-800 bg-slate-900/50 p-3.5 sm:p-5 backdrop-blur">
+              <p className="text-2xl sm:text-3xl font-black text-sky-400">6 NDRF</p>
               <p className="text-xs font-bold text-white mt-1">Response Battalions</p>
               <p className="text-[10px] text-slate-400 mt-0.5">Ready for National Mobilization</p>
             </div>

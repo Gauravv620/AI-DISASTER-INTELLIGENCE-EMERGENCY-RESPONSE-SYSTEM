@@ -869,28 +869,29 @@ export default function App() {
       {/* =======================================================
           TOP OFFICIAL GOVERNMENT BANNER
       ======================================================= */}
-      <div className="border-b border-slate-800 bg-slate-950 px-4 py-1.5 text-[11px] text-slate-400 flex flex-wrap items-center justify-between z-50 relative">
-        <div className="flex items-center gap-3">
+      <div className="border-b border-slate-800 bg-slate-950 px-3 sm:px-4 py-1.5 text-[10px] sm:text-[11px] text-slate-400 flex flex-wrap items-center justify-between gap-2 z-50 relative">
+        <div className="flex items-center gap-2 sm:gap-3">
           <button
             type="button"
             onClick={() => setCurrentPage("landing")}
-            className="flex items-center gap-1.5 text-indigo-400 hover:text-indigo-300 font-bold transition-colors"
+            className="flex items-center gap-1.5 text-indigo-400 hover:text-indigo-300 font-bold transition-colors shrink-0"
           >
             <Home className="w-3.5 h-3.5" /> Portal Home
           </button>
           <span className="text-slate-700">|</span>
-          <div className="flex items-center gap-2">
-            <Building2 className="w-3.5 h-3.5 text-slate-500" />
-            <span>Government of India · Ministry of Home Affairs · National Disaster Management</span>
+          <div className="flex items-center gap-1.5">
+            <Building2 className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+            <span className="hidden sm:inline">Government of India · Ministry of Home Affairs · NDMA</span>
+            <span className="sm:hidden font-medium">Govt of India · NDMA</span>
           </div>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 sm:gap-4 shrink-0">
           <button
             type="button"
             onClick={() => setShowHelplineModal(true)}
             className="flex items-center gap-1 text-rose-400 hover:text-rose-300 font-bold transition-colors"
           >
-            <PhoneCall className="w-3 h-3 animate-pulse" /> Emergency Hotlines (112 / 1078)
+            <PhoneCall className="w-3 h-3 animate-pulse" /> Hotlines (112 / 1078)
           </button>
           <span className="hidden sm:inline text-slate-600">|</span>
           <span className="hidden sm:inline font-mono">EN-IN</span>
@@ -904,27 +905,26 @@ export default function App() {
           MASTER COMMAND HEADER
       ======================================================= */}
       <header className="border-b border-slate-800/80 bg-[#060c18]/90 backdrop-blur-xl sticky top-0 z-40">
-        <div className="mx-auto flex max-w-[1500px] items-center justify-between px-4 py-3 sm:px-6">
+        <div className="mx-auto flex max-w-[1500px] items-center justify-between px-3 py-2.5 sm:px-6 sm:py-3">
           {/* Logo & Platform Name */}
           <div
             onClick={() => setCurrentPage("landing")}
-            className="flex items-center gap-3 cursor-pointer group"
+            className="flex items-center gap-2.5 sm:gap-3 cursor-pointer group"
             title="Click to visit National Portal Home"
           >
-            <div className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 via-blue-600 to-indigo-800 shadow-lg shadow-indigo-600/30 group-hover:scale-105 transition-transform">
-              <ShieldAlert className="h-6 w-6 text-white" />
-
+            <div className="relative flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 via-blue-600 to-indigo-800 shadow-lg shadow-indigo-600/30 group-hover:scale-105 transition-transform shrink-0">
+              <ShieldAlert className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
             </div>
             <div>
-              <div className="flex items-center gap-2">
-                <h1 className="text-xl font-black tracking-tight text-white group-hover:text-indigo-300 transition-colors">
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <h1 className="text-lg sm:text-xl font-black tracking-tight text-white group-hover:text-indigo-300 transition-colors">
                   AIDERS
                 </h1>
-                <span className="rounded bg-rose-500/20 px-1.5 py-0.5 text-[10px] font-black text-rose-300 border border-rose-500/40">
+                <span className="rounded bg-rose-500/20 px-1.5 py-0.5 text-[9px] sm:text-[10px] font-black text-rose-300 border border-rose-500/40">
                   DEFCON 2
                 </span>
               </div>
-              <p className="text-[11px] font-medium text-slate-400">
+              <p className="text-[10px] sm:text-[11px] font-medium text-slate-400 truncate max-w-[180px] xs:max-w-[240px] sm:max-w-none">
                 AI Disaster Intelligence & Emergency Response System
               </p>
             </div>
@@ -1267,20 +1267,20 @@ export default function App() {
         {currentPage === "command" && (
           <div className="space-y-6">
             {/* Stat Cards Grid */}
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-3 sm:gap-4 grid-cols-2 lg:grid-cols-4">
               {statCards.map((stat) => {
                 const Icon = stat.icon;
                 return (
                   <div
                     key={stat.label}
-                    className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/40 p-5 backdrop-blur-md transition-all hover:border-slate-700 hover:bg-slate-900/60 shadow-xl group"
+                    className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/40 p-3.5 sm:p-5 backdrop-blur-md transition-all hover:border-slate-700 hover:bg-slate-900/60 shadow-xl group"
                   >
                     <div
                       className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${stat.accent} rounded-full blur-2xl -z-10 group-hover:scale-110 transition-transform`}
                     />
-                    <div className="flex items-center justify-between mb-3">
-                      <div className={`p-2.5 rounded-xl border ${stat.color}`}>
-                        <Icon className="h-5 w-5" />
+                    <div className="flex items-center justify-between mb-2 sm:mb-3">
+                      <div className={`p-2 sm:p-2.5 rounded-xl border ${stat.color}`}>
+                        <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
                       </div>
                       <div className="flex items-center gap-1.5">
                         {stat.live && (
@@ -1292,13 +1292,13 @@ export default function App() {
                             <span className="text-[9px] font-bold text-rose-400 uppercase tracking-wide">Live</span>
                           </span>
                         )}
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                        <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-slate-500">
                           {stat.sub}
                         </span>
                       </div>
                     </div>
-                    <p className="text-3xl font-black text-white tracking-tight transition-all duration-500">{stat.value}</p>
-                    <p className="mt-1 text-xs font-semibold text-slate-400">{stat.label}</p>
+                    <p className="text-xl sm:text-3xl font-black text-white tracking-tight transition-all duration-500">{stat.value}</p>
+                    <p className="mt-1 text-[11px] sm:text-xs font-semibold text-slate-400">{stat.label}</p>
                   </div>
                 );
               })}
@@ -1307,7 +1307,7 @@ export default function App() {
             {/* GIS Map + Alert Feed Dual Columns */}
             <div className="grid gap-6 lg:grid-cols-[1fr_440px] items-stretch">
               {/* GIS Map Panel */}
-              <div className="flex h-[680px] min-h-0 flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/50 backdrop-blur-md shadow-2xl">
+              <div className="flex h-[380px] sm:h-[480px] lg:h-[680px] min-h-0 flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/50 backdrop-blur-md shadow-2xl">
                 <div className="flex items-center justify-between border-b border-slate-800 bg-slate-950/80 px-5 py-3.5">
                   <div className="flex items-center gap-3">
                     <div className="rounded-lg border border-blue-500/30 bg-blue-500/10 p-2 text-blue-400">
@@ -1360,7 +1360,7 @@ export default function App() {
               </div>
 
               {/* Verified Government Alerts Feed */}
-              <aside className="flex h-[680px] min-h-0 flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/50 backdrop-blur-md shadow-2xl">
+              <aside className="flex h-[420px] sm:h-[520px] lg:h-[680px] min-h-0 flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/50 backdrop-blur-md shadow-2xl">
                 {/* Feed Header */}
                 <div className="flex shrink-0 items-center justify-between border-b border-slate-800 bg-slate-950/80 px-5 py-3.5">
                   <div className="flex items-center gap-3">

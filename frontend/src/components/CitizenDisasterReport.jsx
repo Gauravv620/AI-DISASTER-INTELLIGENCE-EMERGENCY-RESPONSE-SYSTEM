@@ -38,7 +38,7 @@ import { TACTICAL_RESCUE_TEAMS } from "../services/tacticalData";
 import { useAuth } from "../contexts/AuthContext";
 import { offlineStorage } from "../services/offlineStorage";
 
-const API_BASE = "http://127.0.0.1:8000";
+const API_BASE = import.meta.env.VITE_API_BASE || "http://127.0.0.1:8000";
 
 const INCIDENT_CATEGORIES = [
   { id: "FLOOD", label: "Flood / Inundation", icon: Waves, color: "text-blue-400 border-blue-500/30 bg-blue-500/10" },
