@@ -620,16 +620,16 @@ export default function LandingPage({
               </div>
 
               <div>
-                {/* Blank professional silhouette / initials avatar placeholder */}
-                <div className="relative h-72 w-full rounded-xl overflow-hidden bg-gradient-to-b from-slate-900 via-slate-950 to-[#070b14] border border-dashed border-slate-700/80 flex flex-col items-center justify-center p-6 text-center">
-                  <div className="h-24 w-24 rounded-full bg-gradient-to-tr from-purple-600/30 via-indigo-600/20 to-slate-800 border-2 border-purple-500/40 flex items-center justify-center text-purple-300 shadow-xl mb-3">
-                    <User className="h-12 w-12 text-purple-300/80" />
-                  </div>
-                  <span className="text-xs font-bold text-slate-300">Shivani Singh</span>
-                  <span className="text-[10px] text-slate-500 mt-0.5">Research Fellow · MITSoC</span>
-                  <div className="mt-3 rounded bg-purple-500/15 px-2.5 py-0.5 text-[9px] font-mono text-purple-300 border border-purple-500/30">
-                    AI EVALUATION &amp; BENCHMARKS
-                  </div>
+                <div className="relative h-72 w-full rounded-xl overflow-hidden bg-slate-950 border border-slate-800 group-hover:border-purple-500/30 transition-colors shadow-inner flex items-center justify-center">
+                  <img
+                    src="/team/shivani_singh.jpg"
+                    alt="Shivani Singh - AI Model Evaluation & Research Lead"
+                    className="h-full w-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    onError={(e) => {
+                      e.target.src = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500";
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60" />
                 </div>
 
                 <div className="mt-4">
