@@ -550,7 +550,7 @@ export default function LandingPage({
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* 1. Gaurav Kumar - Full-Stack & AI Developer */}
             <div className="rounded-2xl border border-slate-800/80 bg-slate-900/60 p-4 flex flex-col justify-between hover:border-cyan-500/40 hover:bg-slate-900/80 transition-all duration-300 shadow-lg group relative overflow-hidden">
-              <div className="absolute top-3 right-3 z-10 flex items-center gap-1 rounded-full bg-cyan-500/20 border border-cyan-500/40 px-2.5 py-0.5 text-[10px] font-bold text-cyan-300 backdrop-blur">
+              <div className="absolute top-3 right-3 z-10 flex items-center gap-1 rounded-full bg-slate-950/90 border border-cyan-400/80 px-2.5 py-0.5 text-[10px] font-black text-cyan-200 shadow-xl backdrop-blur-md">
                 <span>FULL-STACK & AI DEVELOPER</span>
               </div>
 
@@ -599,7 +599,7 @@ export default function LandingPage({
 
             {/* 2. Aaryan Raj - Frontend & Tactical UI/UX Specialist (Swapped with #3) */}
             <div className="rounded-2xl border border-slate-800/80 bg-slate-900/60 p-4 flex flex-col justify-between hover:border-indigo-500/40 hover:bg-slate-900/80 transition-all duration-300 shadow-lg group relative overflow-hidden">
-              <div className="absolute top-3 right-3 z-10 flex items-center gap-1 rounded-full bg-indigo-500/20 border border-indigo-500/40 px-2.5 py-0.5 text-[10px] font-bold text-indigo-300 backdrop-blur">
+              <div className="absolute top-3 right-3 z-10 flex items-center gap-1 rounded-full bg-slate-950/90 border border-indigo-400/80 px-2.5 py-0.5 text-[10px] font-black text-indigo-200 shadow-xl backdrop-blur-md">
                 <span>TACTICAL UI/UX</span>
               </div>
 
@@ -647,7 +647,7 @@ export default function LandingPage({
 
             {/* 3. Yash Walunjkar - Backend & Systems Engineer (Full Photo Uncropped) */}
             <div className="rounded-2xl border border-slate-800/80 bg-slate-900/60 p-4 flex flex-col justify-between hover:border-emerald-500/40 hover:bg-slate-900/80 transition-all duration-300 shadow-lg group relative overflow-hidden">
-              <div className="absolute top-3 right-3 z-10 flex items-center gap-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 px-2.5 py-0.5 text-[10px] font-bold text-emerald-300 backdrop-blur">
+              <div className="absolute top-3 right-3 z-10 flex items-center gap-1 rounded-full bg-slate-950/90 border border-emerald-400/80 px-2.5 py-0.5 text-[10px] font-black text-emerald-200 shadow-xl backdrop-blur-md">
                 <span>BACKEND SYSTEMS</span>
               </div>
 
@@ -695,7 +695,7 @@ export default function LandingPage({
 
             {/* 4. Shivani Singh - AI Model Evaluation & Research Lead */}
             <div className="rounded-2xl border border-slate-800/80 bg-slate-900/60 p-4 flex flex-col justify-between hover:border-purple-500/40 hover:bg-slate-900/80 transition-all duration-300 shadow-lg group relative overflow-hidden">
-              <div className="absolute top-3 right-3 z-10 flex items-center gap-1 rounded-full bg-purple-500/20 border border-purple-500/40 px-2.5 py-0.5 text-[10px] font-bold text-purple-300 backdrop-blur">
+              <div className="absolute top-3 right-3 z-10 flex items-center gap-1 rounded-full bg-slate-950/90 border border-purple-400 px-2.5 py-0.5 text-[10px] font-black text-purple-200 shadow-xl backdrop-blur-md">
                 <span>AI RESEARCH &amp; EVALUATION</span>
               </div>
 
@@ -709,7 +709,7 @@ export default function LandingPage({
                       e.target.src = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500";
                     }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/40 opacity-70 pointer-events-none" />
                 </div>
 
                 <div className="mt-4">
