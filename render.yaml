@@ -1,0 +1,25 @@
+services:
+  # FastAPI Backend Web Service
+  - type: web
+    name: aiders-api
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: CORS_ORIGINS
+        value: "*"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: aiders-db
+          property: connectionString
+
+databases:
+  # Managed PostgreSQL Database
+  - name: aiders-db
+    databaseName: aiders
+    user: aiders
+    plan: free

@@ -1757,12 +1757,13 @@ setCwcFloodTotal(
     function connectWebSocket() {
 
       try {
+        const dynamicWsUrl =
+          import.meta.env.VITE_WS_URL ||
+          (import.meta.env.VITE_API_BASE
+            ? import.meta.env.VITE_API_BASE.replace(/^http/, "ws") + "/ws/alerts"
+            : "ws://127.0.0.1:8000/ws/alerts");
 
-        socket = new WebSocket(
-
-          "ws://127.0.0.1:8000/ws/alerts"
-
-        );
+        socket = new WebSocket(dynamicWsUrl);
 
 
 

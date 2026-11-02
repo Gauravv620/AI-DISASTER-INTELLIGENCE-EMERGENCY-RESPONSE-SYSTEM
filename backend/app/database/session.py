@@ -9,18 +9,27 @@ from sqlalchemy.ext.asyncio import (
 
 
 class Settings(BaseSettings):
-    database_url: str
+    database_url: str = "postgresql+asyncpg://aiders:aiders_dev@localhost:5432/aiders"
 
     model_config = SettingsConfigDict(
         env_file=Path(__file__).resolve().parents[3] / ".env",
         extra="ignore",
     )
 
+    @property
+    def async_database_url(self) -> str:
+        url = self.database_url
+        if url.startswith("postgres://"):
+            return url.replace("postgres://", "postgresql+asyncpg://", 1)
+        if url.startswith("postgresql://") and not url.startswith("postgresql+asyncpg://"):
+            return url.replace("postgresql://", "postgresql+asyncpg://", 1)
+        return url
+
 
 settings = Settings()
 
 engine = create_async_engine(
-    settings.database_url,
+    settings.async_database_url,
     echo=False,
     pool_pre_ping=True,
 )
