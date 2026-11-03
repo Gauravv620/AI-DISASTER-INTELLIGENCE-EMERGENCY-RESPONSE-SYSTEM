@@ -2,7 +2,18 @@ import React, { useEffect, useRef, useState } from "react";
 import * as faceapi from "face-api.js";
 
 const MODEL_URL = "/models";
-const API_BASE = import.meta.env.VITE_API_BASE || "";
+const PROD_API_BASE = "https://ai-disaster-intelligence-emergency.onrender.com";
+const isLocalhost =
+  typeof window !== "undefined" &&
+  (window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1" ||
+    window.location.hostname === "0.0.0.0");
+
+const API_BASE =
+  import.meta.env.VITE_API_BASE ||
+  (!isLocalhost || import.meta.env.PROD
+    ? PROD_API_BASE
+    : "");
 
 export default function FaceVerification({ officialId, onVerified, onFailure }) {
   const videoRef = useRef(null);

@@ -118,7 +118,7 @@ export const offlineStorage = {
   /**
    * Synchronize pending offline outbox reports with the server
    */
-  async syncOfflineOutbox(apiBase = (import.meta.env?.VITE_API_BASE || "http://127.0.0.1:8000")) {
+  async syncOfflineOutbox(apiBase = (import.meta.env?.VITE_API_BASE || (import.meta.env?.PROD ? "https://ai-disaster-intelligence-emergency.onrender.com" : "http://127.0.0.1:8000"))) {
     const outbox = this.getOfflineOutbox();
     if (outbox.length === 0) return { total: 0, synced: 0, failed: 0 };
 

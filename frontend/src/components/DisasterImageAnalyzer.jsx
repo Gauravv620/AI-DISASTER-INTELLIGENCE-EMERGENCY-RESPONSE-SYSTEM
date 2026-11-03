@@ -18,7 +18,18 @@ import {
 } from "lucide-react";
 import { soundAlerts } from "../services/soundAlerts";
 
-const API_BASE = import.meta.env.VITE_API_BASE || "http://127.0.0.1:8000";
+const PROD_API_BASE = "https://ai-disaster-intelligence-emergency.onrender.com";
+const isLocalhost =
+  typeof window !== "undefined" &&
+  (window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1" ||
+    window.location.hostname === "0.0.0.0");
+
+const API_BASE =
+  import.meta.env.VITE_API_BASE ||
+  (!isLocalhost || import.meta.env.PROD
+    ? PROD_API_BASE
+    : "http://127.0.0.1:8000");
 
 const CATEGORY_LABELS = {
   POSSIBLE_LANDSLIDE: "Landslide / Rockfall / Slope Failure",

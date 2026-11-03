@@ -54,12 +54,27 @@ import {
   TACTICAL_TICKER_ITEMS,
 } from "./services/tacticalData";
 
-const API_BASE = import.meta.env.VITE_API_BASE || "http://127.0.0.1:8000";
+const PROD_API_BASE = "https://ai-disaster-intelligence-emergency.onrender.com";
+const isLocalhost =
+  typeof window !== "undefined" &&
+  (window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1" ||
+    window.location.hostname === "0.0.0.0");
+
+const API_BASE =
+  import.meta.env.VITE_API_BASE ||
+  (!isLocalhost || import.meta.env.PROD
+    ? PROD_API_BASE
+    : "http://127.0.0.1:8000");
+
+const PROD_WS_URL = "wss://ai-disaster-intelligence-emergency.onrender.com/ws/alerts";
 const WS_URL =
   import.meta.env.VITE_WS_URL ||
   (import.meta.env.VITE_API_BASE
     ? import.meta.env.VITE_API_BASE.replace(/^http/, "ws") + "/ws/alerts"
-    : "ws://127.0.0.1:8000/ws/alerts");
+    : (!isLocalhost || import.meta.env.PROD
+        ? PROD_WS_URL
+        : "ws://127.0.0.1:8000/ws/alerts"));
 
 export default function App() {
   const { user, isAuthenticated, logout } = useAuth();
@@ -231,7 +246,7 @@ export default function App() {
     try {
       setLoadingAlerts(true);
       setAlertError("");
-      const response = await fetch(`${API_BASE}/api/v1/alerts?limit=100&offset=0`);
+      const response = await fetch(`${API_BASE}/api/v1/alerts?limit=500&offset=0`);
       if (!response.ok) throw new Error(`Status ${response.status}`);
       const data = await response.json();
       const items = data.alerts || [];
