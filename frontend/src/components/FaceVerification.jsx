@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import * as faceapi from "face-api.js";
 
 const MODEL_URL = "/models";
+const API_BASE = import.meta.env.VITE_API_BASE || "";
 
 export default function FaceVerification({ officialId, onVerified, onFailure }) {
   const videoRef = useRef(null);
@@ -70,7 +71,7 @@ export default function FaceVerification({ officialId, onVerified, onFailure }) 
 
       const descriptor = Array.from(detection.descriptor);
 
-      const response = await fetch("/api/v1/auth/face/verify", {
+      const response = await fetch(`${API_BASE}/api/v1/auth/face/verify`, {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
