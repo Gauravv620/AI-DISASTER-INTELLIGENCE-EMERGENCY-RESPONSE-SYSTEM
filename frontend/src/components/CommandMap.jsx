@@ -747,7 +747,7 @@ function getSachetGeometry(alert) {
 
 
 
-export default function CommandMap({ onIncidentSelect }) {
+export default function CommandMap({ onIncidentSelect, alerts: propAlerts }) {
   /* ========================================================
      COLLAPSIBLE GIS & LEGEND PANEL STATE (TOP-RIGHT)
      ======================================================== */
@@ -871,7 +871,7 @@ export default function CommandMap({ onIncidentSelect }) {
 
 
   const [sachetAlerts, setSachetAlerts] =
-    useState(TACTICAL_ALERTS);
+    useState(propAlerts && propAlerts.length > 0 ? propAlerts : TACTICAL_ALERTS);
 
   const [sachetLoading, setSachetLoading] =
     useState(false);
@@ -880,7 +880,15 @@ export default function CommandMap({ onIncidentSelect }) {
     useState("");
 
   const [totalSachetAlerts, setTotalSachetAlerts] =
-    useState(TACTICAL_ALERTS.length);
+    useState(propAlerts && propAlerts.length > 0 ? propAlerts.length : TACTICAL_ALERTS.length);
+
+  useEffect(() => {
+    if (propAlerts && propAlerts.length > 0) {
+      setSachetAlerts(propAlerts);
+      setTotalSachetAlerts(propAlerts.length);
+      setSachetError("");
+    }
+  }, [propAlerts]);
 
 
 

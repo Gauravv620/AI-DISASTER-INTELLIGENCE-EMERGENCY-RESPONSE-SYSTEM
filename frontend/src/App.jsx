@@ -1350,7 +1350,7 @@ export default function App() {
                 </div>
 
                 <div className="relative min-h-0 flex-1 bg-slate-950">
-                  <CommandMap onIncidentSelect={handleMapIncidentSelect} />
+                  <CommandMap alerts={alerts} onIncidentSelect={handleMapIncidentSelect} />
                   {!isAuthenticated && (
                     <div className="absolute inset-0 z-[1000] bg-slate-950/80 backdrop-blur-[2px] flex flex-col items-center justify-center p-6 text-center">
                       <div className="rounded-2xl border border-amber-500/30 bg-slate-900/90 p-5 max-w-sm shadow-2xl backdrop-blur-md">
@@ -1606,7 +1606,7 @@ export default function App() {
               </button>
             </div>
             <div className="flex-1 relative min-h-0 bg-slate-950">
-              <CommandMap onIncidentSelect={handleMapIncidentSelect} />
+              <CommandMap alerts={alerts} onIncidentSelect={handleMapIncidentSelect} />
               {!isAuthenticated && (
                 <div className="absolute inset-0 z-[1000] bg-slate-950/80 backdrop-blur-[2px] flex flex-col items-center justify-center p-6 text-center">
                   <div className="rounded-2xl border border-amber-500/30 bg-slate-900/90 p-6 max-w-md shadow-2xl backdrop-blur-md">
