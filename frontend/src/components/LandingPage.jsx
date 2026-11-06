@@ -709,7 +709,7 @@ export default function LandingPage({
                       e.target.src = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500";
                     }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/40 opacity-70 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60 pointer-events-none" />
                 </div>
 
                 <div className="mt-4">
