@@ -61,20 +61,22 @@ const isLocalhost =
     window.location.hostname === "127.0.0.1" ||
     window.location.hostname === "0.0.0.0");
 
-const API_BASE =
+const rawApiBase =
   import.meta.env.VITE_API_BASE ||
   (!isLocalhost || import.meta.env.PROD
     ? PROD_API_BASE
     : "http://127.0.0.1:8000");
+const API_BASE = (rawApiBase || "").replace(/\/+$/, "");
 
 const PROD_WS_URL = "wss://ai-disaster-intelligence-emergency.onrender.com/ws/alerts";
-const WS_URL =
+const rawWsUrl =
   import.meta.env.VITE_WS_URL ||
   (import.meta.env.VITE_API_BASE
-    ? import.meta.env.VITE_API_BASE.replace(/^http/, "ws") + "/ws/alerts"
+    ? import.meta.env.VITE_API_BASE.replace(/\/+$/, "").replace(/^http/, "ws") + "/ws/alerts"
     : (!isLocalhost || import.meta.env.PROD
         ? PROD_WS_URL
         : "ws://127.0.0.1:8000/ws/alerts"));
+const WS_URL = rawWsUrl;
 
 export default function App() {
   const { user, isAuthenticated, logout } = useAuth();

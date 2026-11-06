@@ -45,11 +45,12 @@ const isLocalhost =
     window.location.hostname === "127.0.0.1" ||
     window.location.hostname === "0.0.0.0");
 
-const API_BASE =
+const rawApiBase =
   import.meta.env.VITE_API_BASE ||
   (!isLocalhost || import.meta.env.PROD
     ? PROD_API_BASE
     : "http://127.0.0.1:8000");
+const API_BASE = (rawApiBase || "").replace(/\/+$/, "");
 
 const INCIDENT_CATEGORIES = [
   { id: "FLOOD", label: "Flood / Inundation", icon: Waves, color: "text-blue-400 border-blue-500/30 bg-blue-500/10" },

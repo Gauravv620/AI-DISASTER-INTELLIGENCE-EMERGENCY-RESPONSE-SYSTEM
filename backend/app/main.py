@@ -1,8 +1,9 @@
 import asyncio
 import logging
 import os
+import re
 
-from fastapi import FastAPI, WebSocket, Depends
+from fastapi import FastAPI, WebSocket, Depends, Request
 from fastapi.middleware.cors import CORSMiddleware
 
 from sqlalchemy import text
@@ -70,6 +71,15 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.middleware("http")
+async def normalize_slashes_middleware(request: Request, call_next):
+    # Normalize multiple consecutive slashes in request path (e.g. //api/v1/alerts -> /api/v1/alerts)
+    raw_path = request.scope.get("path", "")
+    if "//" in raw_path:
+        request.scope["path"] = re.sub(r"/+", "/", raw_path)
+    return await call_next(request)
 
 
 # ============================================================

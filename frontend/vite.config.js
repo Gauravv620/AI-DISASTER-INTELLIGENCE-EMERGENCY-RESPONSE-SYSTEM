@@ -17,15 +17,14 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [react()],
     define: {
-      // Bake the production URLs directly into the bundle.
-      // The env var check is kept so local overrides still work (e.g. via .env.local).
+      // Bake the production URLs directly into the bundle, stripping any accidental trailing slashes.
       "import.meta.env.VITE_API_BASE":
         JSON.stringify(
-          env.VITE_API_BASE || (isProduction ? PROD_API_BASE : "")
+          (env.VITE_API_BASE || (isProduction ? PROD_API_BASE : "")).replace(/\/+$/, "")
         ),
       "import.meta.env.VITE_WS_URL":
         JSON.stringify(
-          env.VITE_WS_URL || (isProduction ? PROD_WS_URL : "")
+          (env.VITE_WS_URL || (isProduction ? PROD_WS_URL : "")).replace(/\/+$/, "")
         ),
     },
   };

@@ -9,11 +9,12 @@ const isLocalhost =
     window.location.hostname === "127.0.0.1" ||
     window.location.hostname === "0.0.0.0");
 
-const API_BASE =
+const rawApiBase =
   import.meta.env.VITE_API_BASE ||
   (!isLocalhost || import.meta.env.PROD
     ? PROD_API_BASE
     : "");
+const API_BASE = (rawApiBase || "").replace(/\/+$/, "");
 
 export default function FaceVerification({ officialId, onVerified, onFailure }) {
   const videoRef = useRef(null);
