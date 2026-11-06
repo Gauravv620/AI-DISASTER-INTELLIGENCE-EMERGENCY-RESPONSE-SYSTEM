@@ -379,29 +379,13 @@ export function AuthProvider({ children }) {
   };
 
   // -------------------------------------------------------------
-  // REAL FIREBASE GOOGLE AUTHENTICATION WITH 18+ AGE GATE
+  // REAL FIREBASE GOOGLE AUTHENTICATION
   // -------------------------------------------------------------
-  const loginWithFirebaseGoogle = async ({ isAgeVerified, birthYear } = {}) => {
+  const loginWithFirebaseGoogle = async () => {
     try {
       setAuthError("");
 
-      // 1. Enforce 18+ Criteria & Legal Certification
-      const currentYear = new Date().getFullYear();
-      const parsedYear = Number(birthYear);
-
-      if (!isAgeVerified) {
-        const msg = "Age Verification Required: Under National Disaster Management regulations, you must check the declaration certifying you are 18 years of age or older.";
-        setAuthError(msg);
-        return { success: false, error: msg };
-      }
-
-      if (parsedYear && parsedYear > currentYear - 18) {
-        const msg = `Access Restricted: You entered birth year ${parsedYear}. You must be at least 18 years of age (born in ${currentYear - 18} or earlier) to access the National Operations Dashboard.`;
-        setAuthError(msg);
-        return { success: false, error: msg };
-      }
-
-      // 2. Perform Real Firebase Google Popup Sign-in
+      // Perform Real Firebase Google Popup Sign-in
       const fbUser = await signInWithGoogleFirebase();
 
       if (!fbUser || !fbUser.email) {

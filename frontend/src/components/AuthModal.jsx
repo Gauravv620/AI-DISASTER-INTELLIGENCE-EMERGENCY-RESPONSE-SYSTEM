@@ -10,7 +10,6 @@ import {
   ChevronRight,
   Globe2,
   Building2,
-  Sparkles,
   ArrowLeft,
   Mail,
   UserCheck,
@@ -18,8 +17,11 @@ import {
   ExternalLink,
   Settings,
   HelpCircle,
+  Activity,
+  Radio,
+  Cpu,
 } from "lucide-react";
-import { useAuth, DEFAULT_OFFICIAL_ACCOUNTS } from "../contexts/AuthContext";
+import { useAuth } from "../contexts/AuthContext";
 
 // Google 4-Color SVG Brand Icon
 function GoogleIcon({ className = "h-5 w-5" }) {
@@ -61,13 +63,9 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = "s
     setAuthError,
   } = useAuth();
 
-  const [mode, setMode] = useState(initialMode); // "signin" | "signup" | "demo" | "firebase_setup"
+  const [mode, setMode] = useState(initialMode === "demo" ? "signin" : initialMode); // "signin" | "signup" | "firebase_setup"
   const [showGoogleChooser, setShowGoogleChooser] = useState(false);
   const [googleHandshakeState, setGoogleHandshakeState] = useState(null); // null | "connecting" | "success"
-
-  // 18+ Statutory Declaration & Age Verification
-  const [isAgeVerified, setIsAgeVerified] = useState(true);
-  const [birthYear, setBirthYear] = useState("2000");
 
   // In-app Firebase Config form
   const [showFirebaseSetup, setShowFirebaseSetup] = useState(false);
@@ -104,33 +102,19 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = "s
     setAuthError("");
     setSuccessNotice("");
 
-    // 1. Verify 18+ Criteria
-    const currentYear = new Date().getFullYear();
-    const parsedYear = Number(birthYear);
-
-    if (!isAgeVerified) {
-      setAuthError("Age Verification Required: You must certify that you are 18 years of age or older to access National Emergency Operations.");
-      return;
-    }
-
-    if (parsedYear && parsedYear > currentYear - 18) {
-      setAuthError(`Access Restricted: Under 18 years of age (born ${parsedYear}). Only personnel aged 18+ are authorized to operate this national system.`);
-      return;
-    }
-
-    // 2. Check if Firebase is configured
+    // Check if Firebase is configured
     if (!isFirebaseConfigured()) {
       setShowFirebaseSetup(true);
       setAuthError("Firebase Setup Required: Please paste your Firebase Project keys below to connect real Google Authentication for any Gmail.");
       return;
     }
 
-    // 3. Initiate Firebase Popup
+    // Initiate Firebase Popup
     setGoogleHandshakeState("connecting");
     setLoading(true);
 
     try {
-      const res = await loginWithFirebaseGoogle({ isAgeVerified, birthYear });
+      const res = await loginWithFirebaseGoogle();
       setLoading(false);
 
       if (res.success) {
@@ -143,6 +127,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = "s
         }, 800);
       } else {
         setGoogleHandshakeState(null);
+        if (res.error) setAuthError(res.error);
       }
     } catch (e) {
       setLoading(false);
@@ -290,19 +275,6 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = "s
     }, 450);
   };
 
-  // Handle Quick Demo Account Fill
-  const handleQuickDemoSelect = (account) => {
-    setSignInEmail(account.email);
-    setSignInPassword(account.password);
-    const result = signIn({ email: account.email, password: account.password });
-    if (result.success) {
-      setSuccessNotice(`Authenticated as ${result.user.name} (${result.user.roleLabel})`);
-      setTimeout(() => {
-        if (onSuccess) onSuccess();
-        onClose();
-      }, 500);
-    }
-  };
 
   return (
     <div className="fixed inset-0 z-[150] flex items-center justify-center bg-slate-950/85 p-3 sm:p-4 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200">
@@ -607,21 +579,6 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = "s
                   <UserPlus className="h-3.5 w-3.5" />
                   Sign Up (Register)
                 </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setMode("demo");
-                    setAuthError("");
-                  }}
-                  className={`flex-1 rounded-lg py-2 text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
-                    mode === "demo"
-                      ? "bg-indigo-600 text-white shadow-md"
-                      : "text-slate-400 hover:text-slate-200"
-                  }`}
-                >
-                  <Sparkles className="h-3.5 w-3.5 text-amber-300" />
-                  Official Logins
-                </button>
               </div>
 
               {/* ===================================================
@@ -629,50 +586,36 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = "s
               =================================================== */}
               {mode === "signin" && (
                 <div className="space-y-4">
-                  {/* Age Verification & Statutory Gate (18+ Requirement) */}
-                  <div className="rounded-xl border border-indigo-500/30 bg-slate-950 p-3 space-y-2">
+                  {/* AIDERS Project Overview & Mission Briefing */}
+                  <div className="rounded-xl border border-indigo-500/30 bg-gradient-to-br from-indigo-950/40 via-slate-950 to-slate-900/80 p-3.5 space-y-2.5 shadow-inner">
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1.5 text-xs font-bold text-slate-200">
-                        <ShieldCheck className="h-4 w-4 text-indigo-400" />
-                        <span>Statutory Eligibility & Age Verification</span>
+                      <div className="flex items-center gap-2 text-xs font-bold text-white">
+                        <Activity className="h-4 w-4 text-indigo-400 animate-pulse" />
+                        <span>AIDERS · AI Disaster Intelligence</span>
                       </div>
-                      <span className={`rounded px-1.5 py-0.5 text-[10px] font-bold border ${
-                        isAgeVerified && Number(birthYear) <= new Date().getFullYear() - 18
-                          ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/40"
-                          : "bg-rose-500/20 text-rose-300 border-rose-500/40"
-                      }`}>
-                        {isAgeVerified && Number(birthYear) <= new Date().getFullYear() - 18 ? "18+ VERIFIED" : "UNDER 18 RESTRICTED"}
+                      <span className="rounded-full bg-emerald-500/15 px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-emerald-300 border border-emerald-500/30 flex items-center gap-1">
+                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-ping" />
+                        Live Operations
                       </span>
                     </div>
 
-                    <label className="flex items-start gap-2 cursor-pointer group">
-                      <input
-                        type="checkbox"
-                        checked={isAgeVerified}
-                        onChange={(e) => setIsAgeVerified(e.target.checked)}
-                        className="mt-0.5 h-4 w-4 rounded border-slate-700 bg-slate-900 text-indigo-600 focus:ring-indigo-500"
-                      />
-                      <span className="text-[11px] text-slate-300 leading-tight group-hover:text-white">
-                        I solemnly declare under the <strong>Disaster Management Act</strong> that I am <strong>18 years of age or older</strong> and authorized to access live emergency registers.
-                      </span>
-                    </label>
+                    <p className="text-[11px] text-slate-300 leading-relaxed">
+                      Next-generation national emergency response command hub integrating real-time <strong>NDMA SACHET</strong> early warning feeds, automated <strong>Computer Vision</strong> disaster classification, and dynamic <strong>GIS incident dispatch</strong> for first responders.
+                    </p>
 
-                    <div className="flex items-center gap-2 pt-1 border-t border-slate-800/80">
-                      <span className="text-[11px] font-semibold text-slate-400">Year of Birth:</span>
-                      <select
-                        value={birthYear}
-                        onChange={(e) => setBirthYear(e.target.value)}
-                        className="rounded-lg border border-slate-700 bg-slate-900 px-2 py-1 text-xs text-white outline-none focus:border-indigo-500"
-                      >
-                        {Array.from({ length: 45 }, (_, i) => 2015 - i).map((yr) => (
-                          <option key={yr} value={yr}>
-                            {yr} {yr > new Date().getFullYear() - 18 ? "(Under 18 - Ineligible)" : "(18+ Eligible)"}
-                          </option>
-                        ))}
-                      </select>
-                      <span className="text-[10px] text-slate-500">
-                        (Minimum age: 18 years)
-                      </span>
+                    <div className="grid grid-cols-3 gap-2 pt-1 border-t border-slate-800/80">
+                      <div className="rounded-lg bg-slate-900/90 border border-slate-800 px-2 py-1.5 text-center">
+                        <span className="block text-[9px] font-bold text-indigo-400 uppercase tracking-wider">SACHET CAP</span>
+                        <span className="text-[10px] font-semibold text-slate-200">Live Telemetry</span>
+                      </div>
+                      <div className="rounded-lg bg-slate-900/90 border border-slate-800 px-2 py-1.5 text-center">
+                        <span className="block text-[9px] font-bold text-indigo-400 uppercase tracking-wider">Vision AI</span>
+                        <span className="text-[10px] font-semibold text-slate-200">Drone &amp; Satellite</span>
+                      </div>
+                      <div className="rounded-lg bg-slate-900/90 border border-slate-800 px-2 py-1.5 text-center">
+                        <span className="block text-[9px] font-bold text-indigo-400 uppercase tracking-wider">Tactical GIS</span>
+                        <span className="text-[10px] font-semibold text-slate-200">NDRF Dispatch</span>
+                      </div>
                     </div>
                   </div>
 
@@ -696,7 +639,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = "s
                     <button
                       type="button"
                       onClick={handleFirebaseGoogleLogin}
-                      disabled={loading || !isAgeVerified || Number(birthYear) > new Date().getFullYear() - 18}
+                      disabled={loading}
                       className="w-full flex items-center justify-center gap-3 rounded-xl border border-slate-600 bg-white hover:bg-slate-100 p-2.5 text-xs font-bold text-slate-900 shadow-md transition-all active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <GoogleIcon className="h-5 w-5 shrink-0" />
@@ -986,48 +929,6 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = "s
                 </form>
               )}
 
-              {/* ===================================================
-                  MODE 3: PRE-REGISTERED OFFICIAL ACCOUNTS (DEMO)
-              =================================================== */}
-              {mode === "demo" && (
-                <div className="space-y-3">
-                  <p className="text-xs text-slate-400">
-                    Pre-registered verified command accounts for demonstration and viva testing:
-                  </p>
-                  <div className="grid gap-2.5">
-                    {DEFAULT_OFFICIAL_ACCOUNTS.map((acc) => (
-                      <button
-                        key={acc.email}
-                        type="button"
-                        onClick={() => handleQuickDemoSelect(acc)}
-                        className="flex items-center justify-between p-3 rounded-xl border border-slate-800 bg-slate-950/70 hover:border-indigo-500 hover:bg-slate-900 transition-all text-left group"
-                      >
-                        <div className="flex items-center gap-3">
-                          <img
-                            src={acc.picture}
-                            alt={acc.name}
-                            className="h-9 w-9 rounded-full object-cover border border-slate-700"
-                          />
-                          <div>
-                            <div className="flex items-center gap-2">
-                              <p className="text-xs font-bold text-white group-hover:text-indigo-300 transition-colors">
-                                {acc.name}
-                              </p>
-                              <span className="rounded bg-indigo-500/20 px-1.5 py-0.2 text-[9px] font-bold text-indigo-300 border border-indigo-500/30">
-                                {acc.roleLabel}
-                              </span>
-                            </div>
-                            <p className="text-[11px] text-slate-400">
-                              {acc.email} · Pass: <span className="font-mono text-slate-300">{acc.password}</span>
-                            </p>
-                          </div>
-                        </div>
-                        <ChevronRight className="h-4 w-4 text-slate-600 group-hover:text-white transition-colors" />
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
             </>
           )}
 
