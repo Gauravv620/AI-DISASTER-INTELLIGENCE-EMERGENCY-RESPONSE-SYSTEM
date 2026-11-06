@@ -1642,39 +1642,22 @@ setCwcFloodTotal(
 
 
 
-  async function loadSachetAlerts() {
-
+  async function loadSachetAlerts(retry = 0) {
     try {
-
       setSachetLoading(true);
-
       setSachetError("");
 
-
-
       const response = await fetch(
-
         API_BASE +
-
           "/api/v1/alerts?limit=500"
-
       );
 
-
-
       if (!response.ok) {
-
         throw new Error(
-
           "SACHET Alert API returned " +
-
             response.status
-
         );
-
       }
-
-
 
       const data = await response.json();
 
@@ -1702,10 +1685,12 @@ setCwcFloodTotal(
       setSachetAlerts((curr) => (curr && curr.length > 0 ? curr : TACTICAL_ALERTS));
       setTotalSachetAlerts((curr) => (curr > 0 ? curr : TACTICAL_ALERTS.length));
       setSachetError("");
+      if (retry < 3) {
+        setTimeout(() => loadSachetAlerts(retry + 1), 4000);
+      }
     } finally {
       setSachetLoading(false);
     }
-
   }
 
 

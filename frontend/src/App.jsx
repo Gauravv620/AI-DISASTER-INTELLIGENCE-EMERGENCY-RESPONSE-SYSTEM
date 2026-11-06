@@ -242,7 +242,7 @@ export default function App() {
   // -------------------------------------------------------------
   // DATA LOADERS WITH RESILIENT FALLBACK
   // -------------------------------------------------------------
-  const loadAlerts = async () => {
+  const loadAlerts = async (retry = 0) => {
     try {
       setLoadingAlerts(true);
       setAlertError("");
@@ -255,15 +255,20 @@ export default function App() {
         setIsLiveBackend(true);
       }
       setLastUpdated(new Date());
-    } catch {
-      // Use tactical dataset (no override — keep current live-simulated state if already running)
+    } catch (err) {
+      console.warn("Live SACHET stream fetch attempt failed, using fallback:", err);
+      // Use tactical dataset fallback
       setAlerts((curr) => curr.length > 0 ? curr : TACTICAL_ALERTS);
+      // Auto-retry up to 3 times with 4s delay to overcome Render cold-start latency
+      if (retry < 3) {
+        setTimeout(() => loadAlerts(retry + 1), 4000);
+      }
     } finally {
       setLoadingAlerts(false);
     }
   };
 
-  const loadIncidentCounts = async () => {
+  const loadIncidentCounts = async (retry = 0) => {
     try {
       setIncidentLoading(true);
       const response = await fetch(`${API_BASE}/api/v1/incidents/count`);
@@ -273,12 +278,15 @@ export default function App() {
       setIsLiveBackend(true);
     } catch {
       setOpenIncidents(TACTICAL_INCIDENTS.filter((i) => i.status === "OPEN").length);
+      if (retry < 3) {
+        setTimeout(() => loadIncidentCounts(retry + 1), 4000);
+      }
     } finally {
       setIncidentLoading(false);
     }
   };
 
-  const loadRescueTeamCount = async () => {
+  const loadRescueTeamCount = async (retry = 0) => {
     try {
       const response = await fetch(`${API_BASE}/api/v1/rescue-teams/count`);
       if (!response.ok) throw new Error(`Status ${response.status}`);
@@ -293,7 +301,9 @@ export default function App() {
       });
       setIsLiveBackend(true);
     } catch {
-      // Fallback
+      if (retry < 3) {
+        setTimeout(() => loadRescueTeamCount(retry + 1), 4000);
+      }
     }
   };
 
@@ -472,9 +482,9 @@ export default function App() {
     },
   ];
 
-  // Real-time alert simulation: every 45 seconds, probabilistically add/remove an alert
+  // Real-time alert simulation: only active when offline / disconnected from live backend
   useEffect(() => {
-    if (!isAuthenticated) return;
+    if (!isAuthenticated || isLiveBackend) return;
 
     const interval = setInterval(() => {
       setAlerts((current) => {
@@ -521,7 +531,7 @@ export default function App() {
     }, 45000); // every 45 seconds
 
     return () => clearInterval(interval);
-  }, [isAuthenticated]);
+  }, [isAuthenticated, isLiveBackend]);
 
   // Polling: refetch from backend every 60 seconds (keeps live data fresh)
   useEffect(() => {
