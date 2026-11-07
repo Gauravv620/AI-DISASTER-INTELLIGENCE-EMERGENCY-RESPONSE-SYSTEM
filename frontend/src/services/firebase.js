@@ -29,13 +29,15 @@ export function getFirebaseConfig() {
     }
   } catch {}
 
+  // Hardcoded default config — always works without UI setup
   const raw = {
-    apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "",
-    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "",
-    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "",
-    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "",
-    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "",
-    appId: import.meta.env.VITE_FIREBASE_APP_ID || "",
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyBpniDPZ9N8KdTKu_0-yt6STXVFY65ykCc",
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "aiders-1b227.firebaseapp.com",
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "aiders-1b227",
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "aiders-1b227.firebasestorage.app",
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "577317591937",
+    appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:577317591937:web:d935a8130ea4a9150f2680",
+    measurementId: "G-311N43F4HB",
   };
   raw.authDomain = sanitizeDomain(raw.authDomain, raw.projectId);
   return raw;
