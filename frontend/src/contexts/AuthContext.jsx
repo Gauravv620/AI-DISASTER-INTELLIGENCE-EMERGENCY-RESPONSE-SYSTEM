@@ -409,7 +409,7 @@ export function AuthProvider({ children }) {
         authMethod: "FIREBASE_GOOGLE_AUTH",
         verified: true,
         ageVerified: true,
-        birthYear: parsedYear || (currentYear - 20),
+        birthYear: currentYear - 20,
         authenticatedAt: new Date().toISOString(),
       };
 
