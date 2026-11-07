@@ -560,7 +560,7 @@ export default function LandingPage({
                   <img
                     src="/team/gaurav_kumar.jpg"
                     alt="Gaurav Kumar - Full-Stack & AI Developer"
-                    className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    className="h-full w-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                     onError={(e) => {
                       e.target.src = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500";
                     }}
@@ -656,7 +656,7 @@ export default function LandingPage({
                   <img
                     src="/team/yash_walunjkar.jpg"
                     alt="Yash Walunjkar - Backend & Systems Engineer"
-                    className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    className="h-full w-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                     onError={(e) => {
                       e.target.src = "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500";
                     }}
