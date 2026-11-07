@@ -155,7 +155,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = "s
             .replace(/const\s+firebaseConfig\s*=\s*/g, "")
             .replace(/export\s+const\s+firebaseConfig\s*=\s*/g, "")
             .replace(/;/g, "");
-          
+
           // If valid JSON or JS object
           const parsed = (new Function(`return ${cleaned}`))();
           if (parsed && parsed.apiKey && parsed.projectId) {
@@ -555,11 +555,10 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = "s
                     setMode("signin");
                     setAuthError("");
                   }}
-                  className={`flex-1 rounded-lg py-2 text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
-                    mode === "signin"
+                  className={`flex-1 rounded-lg py-2 text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${mode === "signin"
                       ? "bg-indigo-600 text-white shadow-md"
                       : "text-slate-400 hover:text-slate-200"
-                  }`}
+                    }`}
                 >
                   <LogIn className="h-3.5 w-3.5" />
                   Sign In
@@ -570,11 +569,10 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = "s
                     setMode("signup");
                     setAuthError("");
                   }}
-                  className={`flex-1 rounded-lg py-2 text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
-                    mode === "signup"
+                  className={`flex-1 rounded-lg py-2 text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${mode === "signup"
                       ? "bg-indigo-600 text-white shadow-md"
                       : "text-slate-400 hover:text-slate-200"
-                  }`}
+                    }`}
                 >
                   <UserPlus className="h-3.5 w-3.5" />
                   Sign Up (Register)
@@ -646,302 +644,302 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = "s
                       <span>{loading ? "Connecting to Google..." : "Continue with Google (Firebase Real Login)"}</span>
                     </button>
 
-                    {/* Instant 1-Click for Gaurav Kumar Fallback */}
-                    <div className="pt-1 flex items-center justify-between text-[11px] text-slate-400">
-                      <span>Or quick sign-in:</span>
-                      <button
-                        type="button"
-                        onClick={() =>
-                          handleSelectGoogleAccount({
-                            name: "Gaurav Kumar",
-                            email: "6206317372gaurav@gmail.com",
-                            role: "ROLE_ADMIN",
-                            organization: "National Disaster Response Division (NDMA)",
-                          })
-                        }
-                        className="text-xs font-semibold text-indigo-400 hover:text-indigo-300 underline"
-                      >
-                        Gaurav Kumar (6206317372gaurav@gmail.com)
-                      </button>
-                    </div>
+                  {/* Instant 1-Click for Gaurav Kumar Fallback */}
+                  <div className="pt-1 flex items-center justify-between text-[11px] text-slate-400">
+                    <span>Or quick sign-in:</span>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        handleSelectGoogleAccount({
+                          name: "Gaurav Kumar",
+                          email: "6206317372gaurav@gmail.com",
+                          role: "ROLE_ADMIN",
+                          organization: "National Disaster Response Division (NDMA)",
+                        })
+                      }
+                      className="text-xs font-semibold text-indigo-400 hover:text-indigo-300 underline"
+                    >
+                      Gaurav Kumar (6206317372gaurav@gmail.com)
+                    </button>
                   </div>
+                </div>
 
                   {/* IN-APP FIREBASE CONFIGURATION DRAWER */}
-                  {showFirebaseSetup && (
-                    <div className="rounded-xl border border-indigo-500/40 bg-slate-900/90 p-4 space-y-3 animate-in fade-in duration-200">
-                      <div className="flex items-center justify-between border-b border-slate-800 pb-2">
-                        <div className="flex items-center gap-2">
-                          <Settings className="h-4 w-4 text-indigo-400" />
-                          <h4 className="text-xs font-bold text-white">Firebase Real Google Auth Setup</h4>
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => setShowFirebaseSetup(false)}
-                          className="text-slate-400 hover:text-white"
-                        >
-                          <X className="h-4 w-4" />
-                        </button>
-                      </div>
-
-                      <div className="text-[11px] text-slate-300 space-y-1.5 leading-relaxed bg-slate-950/80 p-2.5 rounded-lg border border-slate-800">
-                        <p className="font-semibold text-white">How to connect your Firebase Project in 3 steps:</p>
-                        <p>1. Open <a href="https://console.firebase.google.com/" target="_blank" rel="noreferrer" className="text-indigo-400 underline font-semibold inline-flex items-center gap-0.5">console.firebase.google.com <ExternalLink className="h-2.5 w-2.5 inline" /></a> and create a project.</p>
-                        <p>2. Go to <strong>Build &gt; Authentication</strong> &gt; enable <strong>Google</strong> as Sign-in Provider.</p>
-                        <p>3. In <strong>Project Settings (Gear icon) &gt; General &gt; Your apps &gt; Web ( &lt;/&gt; )</strong>, copy the keys and paste below or into <code className="bg-slate-900 px-1 py-0.5 rounded text-indigo-300">frontend/.env</code>.</p>
-                      </div>
-
-                      <form onSubmit={handleSaveFirebaseConfig} className="space-y-2">
-                        <div>
-                          <label className="block text-[11px] font-semibold text-slate-300 mb-0.5">
-                            Quick Paste: Entire firebaseConfig object (or paste keys below)
-                          </label>
-                          <textarea
-                            value={fbRawConfig}
-                            onChange={(e) => setFbRawConfig(e.target.value)}
-                            placeholder={'const firebaseConfig = { apiKey: "...", projectId: "...", ... };'}
-                            rows={2}
-                            className="w-full rounded-lg border border-slate-700 bg-slate-950 px-2.5 py-1.5 font-mono text-[10px] text-indigo-200 placeholder:text-slate-600 outline-none focus:border-indigo-500"
-                          />
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-2">
-                          <div>
-                            <label className="block text-[10px] font-semibold text-slate-400 mb-0.5">
-                              API Key (apiKey)
-                            </label>
-                            <input
-                              type="text"
-                              value={fbApiKey}
-                              onChange={(e) => setFbApiKey(e.target.value)}
-                              placeholder="AIzaSy..."
-                              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-2.5 py-1 text-xs text-white placeholder:text-slate-600 outline-none focus:border-indigo-500"
-                            />
-                          </div>
-
-                          <div>
-                            <label className="block text-[10px] font-semibold text-slate-400 mb-0.5">
-                              Project ID (projectId)
-                            </label>
-                            <input
-                              type="text"
-                              value={fbProjectId}
-                              onChange={(e) => setFbProjectId(e.target.value)}
-                              placeholder="aiders-disaster"
-                              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-2.5 py-1 text-xs text-white placeholder:text-slate-600 outline-none focus:border-indigo-500"
-                            />
-                          </div>
-                        </div>
-
-                        <div className="flex justify-end gap-2 pt-1">
-                          <button
-                            type="button"
-                            onClick={() => setShowFirebaseSetup(false)}
-                            className="rounded-lg border border-slate-700 px-3 py-1.5 text-xs text-slate-400 hover:text-white"
-                          >
-                            Cancel
-                          </button>
-                          <button
-                            type="submit"
-                            className="rounded-lg bg-indigo-600 hover:bg-indigo-500 px-4 py-1.5 text-xs font-bold text-white shadow"
-                          >
-                            Save & Activate Firebase
-                          </button>
-                        </div>
-                      </form>
+              {showFirebaseSetup && (
+                <div className="rounded-xl border border-indigo-500/40 bg-slate-900/90 p-4 space-y-3 animate-in fade-in duration-200">
+                  <div className="flex items-center justify-between border-b border-slate-800 pb-2">
+                    <div className="flex items-center gap-2">
+                      <Settings className="h-4 w-4 text-indigo-400" />
+                      <h4 className="text-xs font-bold text-white">Firebase Real Google Auth Setup</h4>
                     </div>
-                  )}
-
-                  <div className="flex items-center gap-3">
-                    <div className="h-px bg-slate-800 flex-1" />
-                    <span className="text-[10px] font-bold uppercase text-slate-500">
-                      Or Sign In with Registered Email & Password
-                    </span>
-                    <div className="h-px bg-slate-800 flex-1" />
+                    <button
+                      type="button"
+                      onClick={() => setShowFirebaseSetup(false)}
+                      className="text-slate-400 hover:text-white"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
                   </div>
 
-                  {/* Email & Password Sign In Form */}
-                  <form onSubmit={handleSignInSubmit} className="space-y-3">
+                  <div className="text-[11px] text-slate-300 space-y-1.5 leading-relaxed bg-slate-950/80 p-2.5 rounded-lg border border-slate-800">
+                    <p className="font-semibold text-white">How to connect your Firebase Project in 3 steps:</p>
+                    <p>1. Open <a href="https://console.firebase.google.com/" target="_blank" rel="noreferrer" className="text-indigo-400 underline font-semibold inline-flex items-center gap-0.5">console.firebase.google.com <ExternalLink className="h-2.5 w-2.5 inline" /></a> and create a project.</p>
+                    <p>2. Go to <strong>Build &gt; Authentication</strong> &gt; enable <strong>Google</strong> as Sign-in Provider.</p>
+                    <p>3. In <strong>Project Settings (Gear icon) &gt; General &gt; Your apps &gt; Web ( &lt;/&gt; )</strong>, copy the keys and paste below or into <code className="bg-slate-900 px-1 py-0.5 rounded text-indigo-300">frontend/.env</code>.</p>
+                  </div>
+
+                  <form onSubmit={handleSaveFirebaseConfig} className="space-y-2">
                     <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1">
-                        Registered Email Address
+                      <label className="block text-[11px] font-semibold text-slate-300 mb-0.5">
+                        Quick Paste: Entire firebaseConfig object (or paste keys below)
                       </label>
-                      <input
-                        type="email"
-                        value={signInEmail}
-                        onChange={(e) => setSignInEmail(e.target.value)}
-                        placeholder="e.g. commander@ndrf.gov.in or 6206317372gaurav@gmail.com"
-                        className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3.5 py-2 text-xs text-white placeholder:text-slate-600 outline-none focus:border-indigo-500"
-                        required
+                      <textarea
+                        value={fbRawConfig}
+                        onChange={(e) => setFbRawConfig(e.target.value)}
+                        placeholder={'const firebaseConfig = { apiKey: "...", projectId: "...", ... };'}
+                        rows={2}
+                        className="w-full rounded-lg border border-slate-700 bg-slate-950 px-2.5 py-1.5 font-mono text-[10px] text-indigo-200 placeholder:text-slate-600 outline-none focus:border-indigo-500"
                       />
                     </div>
 
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1">
-                        Password
-                      </label>
-                      <input
-                        type="password"
-                        value={signInPassword}
-                        onChange={(e) => setSignInPassword(e.target.value)}
-                        placeholder="Enter password"
-                        className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3.5 py-2 text-xs text-white placeholder:text-slate-600 outline-none focus:border-indigo-500"
-                        required
-                      />
+                    <div className="grid grid-cols-2 gap-2">
+                      <div>
+                        <label className="block text-[10px] font-semibold text-slate-400 mb-0.5">
+                          API Key (apiKey)
+                        </label>
+                        <input
+                          type="text"
+                          value={fbApiKey}
+                          onChange={(e) => setFbApiKey(e.target.value)}
+                          placeholder="AIzaSy..."
+                          className="w-full rounded-lg border border-slate-700 bg-slate-950 px-2.5 py-1 text-xs text-white placeholder:text-slate-600 outline-none focus:border-indigo-500"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-[10px] font-semibold text-slate-400 mb-0.5">
+                          Project ID (projectId)
+                        </label>
+                        <input
+                          type="text"
+                          value={fbProjectId}
+                          onChange={(e) => setFbProjectId(e.target.value)}
+                          placeholder="aiders-disaster"
+                          className="w-full rounded-lg border border-slate-700 bg-slate-950 px-2.5 py-1 text-xs text-white placeholder:text-slate-600 outline-none focus:border-indigo-500"
+                        />
+                      </div>
                     </div>
 
-                    <button
-                      type="submit"
-                      disabled={loading}
-                      className="w-full rounded-xl bg-indigo-600 hover:bg-indigo-500 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition-all disabled:opacity-50 shadow-md shadow-indigo-600/30"
-                    >
-                      {loading ? "Verifying Credentials..." : "Sign In & Decrypt Telemetry"}
-                    </button>
-
-                    <div className="text-center pt-2">
-                      <p className="text-xs text-slate-400">
-                        Don't have an account?{" "}
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setMode("signup");
-                            setAuthError("");
-                          }}
-                          className="text-indigo-400 hover:text-indigo-300 font-bold underline"
-                        >
-                          Sign Up / Register Here
-                        </button>
-                      </p>
+                    <div className="flex justify-end gap-2 pt-1">
+                      <button
+                        type="button"
+                        onClick={() => setShowFirebaseSetup(false)}
+                        className="rounded-lg border border-slate-700 px-3 py-1.5 text-xs text-slate-400 hover:text-white"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        type="submit"
+                        className="rounded-lg bg-indigo-600 hover:bg-indigo-500 px-4 py-1.5 text-xs font-bold text-white shadow"
+                      >
+                        Save & Activate Firebase
+                      </button>
                     </div>
                   </form>
                 </div>
               )}
 
-              {/* ===================================================
-                  MODE 2: SIGN UP (REGISTRATION)
-              =================================================== */}
-              {mode === "signup" && (
-                <form onSubmit={handleSignUpSubmit} className="space-y-3">
-                  <div className="text-center pb-1">
-                    <p className="text-xs text-slate-300 font-medium">
-                      Create an Authorized Response Account
-                    </p>
-                    <p className="text-[11px] text-slate-500">
-                      New responders must register before accessing confidential operational feeds.
-                    </p>
-                  </div>
+              <div className="flex items-center gap-3">
+                <div className="h-px bg-slate-800 flex-1" />
+                <span className="text-[10px] font-bold uppercase text-slate-500">
+                  Or Sign In with Registered Email & Password
+                </span>
+                <div className="h-px bg-slate-800 flex-1" />
+              </div>
 
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">
-                      Full Name & Rank
-                    </label>
-                    <input
-                      type="text"
-                      value={signUpName}
-                      onChange={(e) => setSignUpName(e.target.value)}
-                      placeholder="e.g. Inspector Rohit Varma"
-                      className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3.5 py-2 text-xs text-white placeholder:text-slate-600 outline-none focus:border-indigo-500"
-                      required
-                    />
-                  </div>
+              {/* Email & Password Sign In Form */}
+              <form onSubmit={handleSignInSubmit} className="space-y-3">
+                <div>
+                  <label className="block text-xs font-semibold text-slate-300 mb-1">
+                    Registered Email Address
+                  </label>
+                  <input
+                    type="email"
+                    value={signInEmail}
+                    onChange={(e) => setSignInEmail(e.target.value)}
+                    placeholder="e.g. commander@ndrf.gov.in or 6206317372gaurav@gmail.com"
+                    className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3.5 py-2 text-xs text-white placeholder:text-slate-600 outline-none focus:border-indigo-500"
+                    required
+                  />
+                </div>
 
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">
-                      Email Address (.gov.in / personal)
-                    </label>
-                    <input
-                      type="email"
-                      value={signUpEmail}
-                      onChange={(e) => setSignUpEmail(e.target.value)}
-                      placeholder="e.g. rohit.varma@sdrf.gov.in"
-                      className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3.5 py-2 text-xs text-white placeholder:text-slate-600 outline-none focus:border-indigo-500"
-                      required
-                    />
-                  </div>
+                <div>
+                  <label className="block text-xs font-semibold text-slate-300 mb-1">
+                    Password
+                  </label>
+                  <input
+                    type="password"
+                    value={signInPassword}
+                    onChange={(e) => setSignInPassword(e.target.value)}
+                    placeholder="Enter password"
+                    className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3.5 py-2 text-xs text-white placeholder:text-slate-600 outline-none focus:border-indigo-500"
+                    required
+                  />
+                </div>
 
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">
-                      Create Password (minimum 4 characters)
-                    </label>
-                    <input
-                      type="password"
-                      value={signUpPassword}
-                      onChange={(e) => setSignUpPassword(e.target.value)}
-                      placeholder="••••••••"
-                      className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3.5 py-2 text-xs text-white placeholder:text-slate-600 outline-none focus:border-indigo-500"
-                      required
-                    />
-                  </div>
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full rounded-xl bg-indigo-600 hover:bg-indigo-500 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition-all disabled:opacity-50 shadow-md shadow-indigo-600/30"
+                >
+                  {loading ? "Verifying Credentials..." : "Sign In & Decrypt Telemetry"}
+                </button>
 
-                  <div className="grid grid-cols-2 gap-3">
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1">
-                        Operational Role
-                      </label>
-                      <select
-                        value={signUpRole}
-                        onChange={(e) => setSignUpRole(e.target.value)}
-                        className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-white outline-none focus:border-indigo-500"
-                      >
-                        <option value="ROLE_ADMIN">NDRF Commander (Admin)</option>
-                        <option value="ROLE_DISPATCHER">EOC Dispatcher</option>
-                        <option value="ROLE_FIELD_OFFICER">SDRF Tactical Lead</option>
-                        <option value="ROLE_CITIZEN">Citizen Volunteer</option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1">
-                        Department / Battalion
-                      </label>
-                      <input
-                        type="text"
-                        value={signUpOrg}
-                        onChange={(e) => setSignUpOrg(e.target.value)}
-                        placeholder="e.g. 5th Bn NDRF Pune"
-                        className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-white placeholder:text-slate-600 outline-none focus:border-indigo-500"
-                      />
-                    </div>
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full rounded-xl bg-indigo-600 hover:bg-indigo-500 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition-all disabled:opacity-50 shadow-md shadow-indigo-600/30"
-                  >
-                    {loading ? "Registering Official Profile..." : "Create Account & Sign In"}
-                  </button>
-
-                  <div className="text-center pt-2">
-                    <p className="text-xs text-slate-400">
-                      Already registered?{" "}
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setMode("signin");
-                          setAuthError("");
-                        }}
-                        className="text-indigo-400 hover:text-indigo-300 font-bold underline"
-                      >
-                        Sign In Here
-                      </button>
-                    </p>
-                  </div>
-                </form>
+                <div className="text-center pt-2">
+                  <p className="text-xs text-slate-400">
+                    Don't have an account?{" "}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMode("signup");
+                        setAuthError("");
+                      }}
+                      className="text-indigo-400 hover:text-indigo-300 font-bold underline"
+                    >
+                      Sign Up / Register Here
+                    </button>
+                  </p>
+                </div>
+              </form>
+            </div>
               )}
 
-            </>
+          {/* ===================================================
+                  MODE 2: SIGN UP (REGISTRATION)
+              =================================================== */}
+          {mode === "signup" && (
+            <form onSubmit={handleSignUpSubmit} className="space-y-3">
+              <div className="text-center pb-1">
+                <p className="text-xs text-slate-300 font-medium">
+                  Create an Authorized Response Account
+                </p>
+                <p className="text-[11px] text-slate-500">
+                  New responders must register before accessing confidential operational feeds.
+                </p>
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Full Name & Rank
+                </label>
+                <input
+                  type="text"
+                  value={signUpName}
+                  onChange={(e) => setSignUpName(e.target.value)}
+                  placeholder="e.g. Inspector Rohit Varma"
+                  className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3.5 py-2 text-xs text-white placeholder:text-slate-600 outline-none focus:border-indigo-500"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Email Address (.gov.in / personal)
+                </label>
+                <input
+                  type="email"
+                  value={signUpEmail}
+                  onChange={(e) => setSignUpEmail(e.target.value)}
+                  placeholder="e.g. rohit.varma@sdrf.gov.in"
+                  className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3.5 py-2 text-xs text-white placeholder:text-slate-600 outline-none focus:border-indigo-500"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Create Password (minimum 4 characters)
+                </label>
+                <input
+                  type="password"
+                  value={signUpPassword}
+                  onChange={(e) => setSignUpPassword(e.target.value)}
+                  placeholder="••••••••"
+                  className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3.5 py-2 text-xs text-white placeholder:text-slate-600 outline-none focus:border-indigo-500"
+                  required
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs font-semibold text-slate-300 mb-1">
+                    Operational Role
+                  </label>
+                  <select
+                    value={signUpRole}
+                    onChange={(e) => setSignUpRole(e.target.value)}
+                    className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-white outline-none focus:border-indigo-500"
+                  >
+                    <option value="ROLE_ADMIN">NDRF Commander (Admin)</option>
+                    <option value="ROLE_DISPATCHER">EOC Dispatcher</option>
+                    <option value="ROLE_FIELD_OFFICER">SDRF Tactical Lead</option>
+                    <option value="ROLE_CITIZEN">Citizen Volunteer</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-slate-300 mb-1">
+                    Department / Battalion
+                  </label>
+                  <input
+                    type="text"
+                    value={signUpOrg}
+                    onChange={(e) => setSignUpOrg(e.target.value)}
+                    placeholder="e.g. 5th Bn NDRF Pune"
+                    className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-white placeholder:text-slate-600 outline-none focus:border-indigo-500"
+                  />
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full rounded-xl bg-indigo-600 hover:bg-indigo-500 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition-all disabled:opacity-50 shadow-md shadow-indigo-600/30"
+              >
+                {loading ? "Registering Official Profile..." : "Create Account & Sign In"}
+              </button>
+
+              <div className="text-center pt-2">
+                <p className="text-xs text-slate-400">
+                  Already registered?{" "}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setMode("signin");
+                      setAuthError("");
+                    }}
+                    className="text-indigo-400 hover:text-indigo-300 font-bold underline"
+                  >
+                    Sign In Here
+                  </button>
+                </p>
+              </div>
+            </form>
           )}
 
-          {/* Footer Security Notice */}
-          <div className="pt-3 border-t border-slate-800 flex items-center justify-between text-[10px] text-slate-500">
-            <span className="flex items-center gap-1">
-              <Lock className="h-3 w-3 text-slate-400" />
-              CERT-In Cyber Security Guidelines Compliant
-            </span>
-            <span>TLS 1.3 · 256-bit AES</span>
-          </div>
+        </>
+          )}
+
+        {/* Footer Security Notice */}
+        <div className="pt-3 border-t border-slate-800 flex items-center justify-between text-[10px] text-slate-500">
+          <span className="flex items-center gap-1">
+            <Lock className="h-3 w-3 text-slate-400" />
+            CERT-In Cyber Security Guidelines Compliant
+          </span>
+          <span>TLS 1.3 · 256-bit AES</span>
         </div>
       </div>
     </div>
+    </div >
   );
 }
