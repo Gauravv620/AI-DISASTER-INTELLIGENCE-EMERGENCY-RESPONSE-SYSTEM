@@ -436,6 +436,8 @@ export function AuthProvider({ children }) {
         friendlyError = "Google Sign-In popup was closed before completing.";
       } else if (err.code === "auth/unauthorized-domain") {
         friendlyError = "This domain (e.g. localhost) is not authorized in your Firebase Console. Add 'localhost' under Authentication > Settings > Authorized Domains.";
+      } else if (err.code === "auth/invalid-continue-uri") {
+        friendlyError = "Invalid Continue URI: In Firebase Console > Authentication > Settings > Authorized Domains, make sure you entered ONLY the domain name (e.g. ai-disaster-intelligence-emergency.vercel.app or localhost) WITHOUT 'https://' or trailing '/'.";
       } else if (err.code === "auth/configuration-not-found" || err.code === "auth/invalid-api-key") {
         friendlyError = "Invalid Firebase configuration. Please check your API key and Project ID in .env or the in-app setup.";
       }

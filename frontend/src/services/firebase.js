@@ -3,6 +3,17 @@ import { getAuth, GoogleAuthProvider, signInWithPopup, signOut as fbSignOut } fr
 
 const STORAGE_FIREBASE_CONFIG_KEY = "aiders_firebase_runtime_config";
 
+function sanitizeDomain(d, projectId) {
+  if (!d) return projectId ? `${projectId}.firebaseapp.com` : "";
+  let cleaned = d.replace(/^https?:\/\//i, "").replace(/\/+$/, "").trim();
+  // authDomain MUST be your Firebase project auth domain (e.g. <project-id>.firebaseapp.com),
+  // NOT your client website URL (like localhost or vercel.app).
+  if (cleaned.includes("localhost") || cleaned.includes("vercel.app") || !cleaned.includes(".")) {
+    if (projectId) return `${projectId}.firebaseapp.com`;
+  }
+  return cleaned;
+}
+
 /**
  * Returns active Firebase configuration from Vite environment variables or LocalStorage runtime override.
  */
@@ -12,12 +23,13 @@ export function getFirebaseConfig() {
     if (custom) {
       const parsed = JSON.parse(custom);
       if (parsed.apiKey && parsed.projectId) {
+        parsed.authDomain = sanitizeDomain(parsed.authDomain, parsed.projectId);
         return parsed;
       }
     }
   } catch {}
 
-  return {
+  const raw = {
     apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "",
     authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "",
     projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "",
@@ -25,6 +37,8 @@ export function getFirebaseConfig() {
     messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "",
     appId: import.meta.env.VITE_FIREBASE_APP_ID || "",
   };
+  raw.authDomain = sanitizeDomain(raw.authDomain, raw.projectId);
+  return raw;
 }
 
 /**
@@ -34,6 +48,10 @@ export function saveFirebaseRuntimeConfig(config) {
   if (!config || !config.apiKey || !config.projectId) {
     throw new Error("Invalid Firebase configuration. 'apiKey' and 'projectId' are required.");
   }
+  config.apiKey = config.apiKey.trim();
+  config.projectId = config.projectId.trim();
+  config.authDomain = sanitizeDomain(config.authDomain, config.projectId);
+  if (config.appId) config.appId = config.appId.trim();
   localStorage.setItem(STORAGE_FIREBASE_CONFIG_KEY, JSON.stringify(config));
 }
 

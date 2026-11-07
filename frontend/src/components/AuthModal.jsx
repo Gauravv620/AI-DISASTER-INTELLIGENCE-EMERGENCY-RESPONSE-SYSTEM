@@ -143,7 +143,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = "s
       let finalConfig = {
         apiKey: fbApiKey.trim(),
         projectId: fbProjectId.trim(),
-        authDomain: fbAuthDomain.trim() || `${fbProjectId.trim()}.firebaseapp.com`,
+        authDomain: (fbAuthDomain.trim() ? fbAuthDomain.trim().replace(/^https?:\/\//i, "").replace(/\/+$/, "") : `${fbProjectId.trim()}.firebaseapp.com`),
         appId: fbAppId.trim(),
       };
 
